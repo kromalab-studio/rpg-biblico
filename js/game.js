@@ -561,7 +561,7 @@ const Game = (() => {
         y: oy / T,
         draw: () => {
           Art.entity(ctx, { kind: 'person', ...o.v.aparencia }, ox - cam.x, oy - cam.y, o.dir, o.t < 1 ? (stepFlip ? 1 : 2) : 0, time);
-          Art.label(ctx, o.v.nome, ox - cam.x + T / 2, oy - cam.y - 1, '#cfe8ff');
+          Art.label(ctx, o.v.nome, ox - cam.x + T / 2, oy - cam.y - 4, '#cfe8ff');
         },
       });
     }
@@ -571,7 +571,7 @@ const Game = (() => {
       y: pp.y / T,
       draw: () => {
         Art.entity(ctx, { kind: 'person', ...v.aparencia }, pp.x - cam.x, pp.y - cam.y, eu.dir, mov ? (stepFlip ? 1 : 2) * (mov.t < 0.5 ? 1 : 0) : 0, time);
-        if (Object.keys(outros).length) Art.label(ctx, v.nome, pp.x - cam.x + T / 2, pp.y - cam.y - 1);
+        if (Object.keys(outros).length) Art.label(ctx, v.nome, pp.x - cam.x + T / 2, pp.y - cam.y - 4);
       },
     });
     list.sort((a, b) => a.y - b.y).forEach(o => o.draw());

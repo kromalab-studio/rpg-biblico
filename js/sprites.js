@@ -216,75 +216,83 @@ const Art = (() => {
     if (dry(1, 0)) g.fillRect(px + T - 3 - wob, py, 2, T);
   }
 
-  // ---------- Viajante (32x32) ----------
+  // ---------- Viajante (molde 33x34 de dados/viajante.js, com as cores escolhidas) ----------
 
-  function person(g, o, dir, step) {
-    const robe = o.robe || '#d2b06e';
-    const robeD = shade(robe, -0.16), robeL = shade(robe, 0.1);
-    const skin = o.skin || '#e3b483';
-    const skinD = shade(skin, -0.12);
-    const hair = o.hair || '#4a2c17';
-    const hairL = shade(hair, 0.12);
-    const belt = o.belt || '#5a3a1a';
-    const bob = step ? 1 : 0;
-    const l1 = step === 1 ? 2 : 0, l2 = step === 2 ? 2 : 0;
+  const vjCache = new Map();
 
-    blob(g, 16, 30, 9, 2, 'rgba(0,0,0,0.25)');
-    // pés (sandálias)
-    r(g, 11, 27 - l1, 4, 3, '#6b4626'); r(g, 11, 29 - l1, 4, 1, '#3a2410');
-    r(g, 17, 27 - l2, 4, 3, '#6b4626'); r(g, 17, 29 - l2, 4, 1, '#3a2410');
-    // túnica
-    r(g, 9, 14 + bob, 14, 14 - bob, robe);
-    r(g, 8, 24, 16, 4, robe);
-    r(g, 19, 14 + bob, 4, 14, robeD);
-    r(g, 8, 26, 16, 2, robeD);
-    r(g, 12, 15 + bob, 1, 10, robeL);
-    r(g, 9, 20 + bob, 14, 2, belt);
-    r(g, 15, 22 + bob, 2, 3, belt);
-    // braços
-    r(g, 6, 15 + bob, 3, 8, robe); r(g, 23, 15 + bob, 3, 8, robeD);
-    r(g, 6, 22 + bob, 3, 3, skin); r(g, 23, 22 + bob, 3, 3, skinD);
-    // cabeça
-    const hy = bob;
-    r(g, 11, 4 + hy, 10, 11, skin);
-    r(g, 10, 6 + hy, 12, 7, skin);
-    r(g, 19, 5 + hy, 2, 9, skinD);
-    r(g, 13, 14 + hy, 6, 1, skinD);
-    // cabelo
-    r(g, 10, 2 + hy, 12, 4, hair);
-    r(g, 11, 1 + hy, 10, 2, hair);
-    r(g, 12, 2 + hy, 4, 1, hairL);
-    if (o.long) { r(g, 9, 4 + hy, 2, 12, hair); r(g, 21, 4 + hy, 2, 12, hair); }
+  // Aceita a aparência nova ({ estilo, cabelo, pele... }) e a antiga ({ robe, hair, long }).
+  function normalizar(ap) {
+    const D = window.DADOS_VIAJANTE;
+    if (ap && ap.cabelo) return { ...D.padrao, ...ap };
+    return { ...D.padrao, estilo: ap && ap.long ? 'longo' : 'curto' };
+  }
 
+  function paleta(ap) {
+    const D = window.DADOS_VIAJANTE;
+    const pick = (lista, id) => lista.find(x => x.id === id) || lista[0];
+    const [f, g, n, h] = pick(D.cabelos, ap.cabelo).tons;
+    const [j, d, o] = pick(D.peles, ap.pele).tons;
+    const [T, S] = pick(D.tunicas, ap.tunica).tons;
+    return {
+      f, g, n, h, j, d, o, T, S,
+      e: pick(D.olhos, ap.olhos).cor, c: pick(D.camisas, ap.camisa).cor,
+      B: pick(D.faixas, ap.faixa).cor, p: pick(D.calcas, ap.calca).cor,
+      m: '#000000', w: '#ffffff', i: D.contorno,
+    };
+  }
+
+  // De costas: o rosto vira cabelo. Andando: uma perna sobe 1 pixel.
+  function moldePara(estilo, dir, frame) {
+    const base = window.DADOS_VIAJANTE.moldes[estilo] || window.DADOS_VIAJANTE.moldes.curto;
+    let g = base.map(r => r.split(''));
     if (dir === 'up') {
-      r(g, 10, 4 + hy, 12, 9, hair);
-      r(g, 12, 3 + hy, 5, 2, hairL);
-      if (o.long) r(g, 10, 12 + hy, 12, 5, hair);
-    } else if (dir === 'left') {
-      r(g, 17, 4 + hy, 5, 6, hair);
-      r(g, 12, 8 + hy, 2, 2, '#1d1208');
-      r(g, 12, 8 + hy, 1, 1, '#ffffff');
-      r(g, 9, 10 + hy, 2, 2, skin);
-      r(g, 12, 12 + hy, 2, 1, '#b5735a');
-    } else if (dir === 'right') {
-      r(g, 10, 4 + hy, 5, 6, hair);
-      r(g, 18, 8 + hy, 2, 2, '#1d1208');
-      r(g, 19, 8 + hy, 1, 1, '#ffffff');
-      r(g, 21, 10 + hy, 2, 2, skin);
-      r(g, 18, 12 + hy, 2, 1, '#b5735a');
-    } else {
-      r(g, 10, 4 + hy, 2, 4, hair); r(g, 20, 4 + hy, 2, 4, hair);
-      r(g, 13, 8 + hy, 2, 2, '#1d1208'); r(g, 18, 8 + hy, 2, 2, '#1d1208');
-      r(g, 13, 8 + hy, 1, 1, '#ffffff'); r(g, 18, 8 + hy, 1, 1, '#ffffff');
-      r(g, 12, 11 + hy, 2, 1, 'rgba(230,120,120,0.45)'); r(g, 19, 11 + hy, 2, 1, 'rgba(230,120,120,0.45)');
-      r(g, 15, 12 + hy, 3, 1, '#b5735a');
+      for (let y = 10; y <= 18; y++) {
+        for (let x = 0; x < g[y].length; x++) {
+          const c = g[y][x];
+          if ('jdmew'.includes(c)) g[y][x] = y >= 16 ? 'g' : 'f';
+          else if (c === 'o') g[y][x] = 'h';
+        }
+      }
     }
-    if (o.lenco) {
-      const ld = shade(o.lenco, -0.15);
-      r(g, 9, 1 + hy, 14, 4, o.lenco);
-      r(g, 9, 5 + hy, 2, 9, o.lenco); r(g, 21, 5 + hy, 2, 9, ld);
-      r(g, 9, 4 + hy, 14, 1, ld);
+    if (frame) {
+      const lado = frame === 1 ? x => x <= 17 : x => x >= 18;
+      for (let y = 28; y < g.length; y++) {
+        for (let x = 0; x < g[y].length; x++) {
+          if (!lado(x)) continue;
+          g[y][x] = y + 1 < g.length ? g[y + 1][x] : '.';
+        }
+      }
     }
+    return g;
+  }
+
+  function viajante(ap, dir = 'down', frame = 0) {
+    const a = normalizar(ap);
+    const key = JSON.stringify([a, dir === 'up' ? 'up' : 'down', frame]);
+    let c = vjCache.get(key);
+    if (c) return c;
+    const pal = paleta(a);
+    const g = moldePara(a.estilo, dir, frame);
+    c = document.createElement('canvas');
+    c.width = g[0].length;
+    c.height = g.length;
+    const ctx = c.getContext('2d');
+    for (let y = 0; y < g.length; y++) {
+      for (let x = 0; x < g[y].length; x++) {
+        const col = pal[g[y][x]];
+        if (!col) continue;
+        ctx.fillStyle = col;
+        ctx.fillRect(x, y, 1, 1);
+      }
+    }
+    vjCache.set(key, c);
+    return c;
+  }
+
+  // Desenha o Viajante com os pés na base da casa (o molde é um pouco maior que 32x32).
+  function person(g, ap, dir, step) {
+    blob(g, 16, 30, 8, 2, 'rgba(0,0,0,0.25)');
+    g.drawImage(viajante(ap, dir, step), -2, -2 - (step ? 1 : 0));
   }
 
   // ---------- Animais (32x32, virados para a direita) ----------
@@ -482,5 +490,5 @@ const Art = (() => {
     g.textAlign = 'left';
   }
 
-  return { T, C, SOLID, tile, edges, entity, sparkle, label, person, animals, rng, shade };
+  return { T, C, SOLID, tile, edges, entity, sparkle, label, person, viajante, normalizar, animals, rng, shade };
 })();

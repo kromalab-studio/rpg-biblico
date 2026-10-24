@@ -59,6 +59,7 @@ index.html            telas, palco do jogo e modais
 css/style.css         visual
 dados/                ← CONTEÚDO EDITÁVEL (não precisa mexer no código)
   regras.js           Virtudes, idades, Antecedentes, níveis, Números da Prova, textos do dízimo
+  viajante.js         aparência do Viajante: moldes pixel a pixel (curto e longo) e paletas de cores
   aventura1.js        Aventura 1 — No Princípio: falas, escolhas, Provas, dias, animais, encerramento
 js/                   código
   regras.js           funções das regras (bônus, nível atual...)
@@ -72,6 +73,10 @@ js/                   código
   screens.js          salvamento, tela inicial, criação do Viajante, Ficha
 materiais/            os PDFs originais do jogo (fonte da verdade) e versões em texto
 ```
+
+### Editando o Viajante
+
+`dados/viajante.js` tem o desenho do Viajante como texto, uma letra por pixel (33 × 34), e as paletas de cores. Para trocar as cores disponíveis, edite as listas `cabelos`, `peles`, `olhos`, `tunicas`, `camisas`, `faixas` e `calcas`. Para mudar o desenho, troque as letras do molde. O começo do arquivo explica o que cada letra significa.
 
 ### Editando a aventura
 

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
   <!-- ===== Tela inicial ===== -->
@@ -60,18 +60,12 @@
         <h2>2. O nome e a aparência</h2>
         <div class="cr-look">
           <div class="cr-preview-box">
-            <canvas id="cr-preview" width="96" height="96"></canvas>
+            <canvas id="cr-preview" width="136" height="136"></canvas>
             <button type="button" id="cr-turn" class="ghost small">↻ Girar</button>
           </div>
           <div class="cr-fields">
             <label>Nome do Viajante <input type="text" id="cr-name" maxlength="20" placeholder="Pode ser inventado ou ter um som bíblico" autocomplete="off"></label>
-            <div class="sw-row"><span>Túnica</span><div id="cr-robe"></div></div>
-            <div class="sw-row"><span>Cabelo</span><div id="cr-hair"></div></div>
-            <div class="sw-row"><span>Pele</span><div id="cr-skin"></div></div>
-            <div class="row">
-              <label class="toggle"><input type="checkbox" id="cr-long"> Cabelo comprido</label>
-              <label class="toggle"><input type="checkbox" id="cr-lenco"> Lenço na cabeça</label>
-            </div>
+            <div id="cr-aparencia"></div>
             <label>Como ele é? (opcional) <input type="text" id="cr-desc" maxlength="120" placeholder="Ex.: tem um sorriso grande e anda descalço"></label>
           </div>
         </div>
@@ -179,17 +173,18 @@
   <div id="toasts"></div>
 
   <!-- Conteúdo editável -->
-  <script src="dados/regras.js?v=4"></script>
-  <script src="dados/aventura1.js?v=4"></script>
+  <script src="dados/regras.js?v=5"></script>
+  <script src="dados/aventura1.js?v=5"></script>
+  <script src="dados/viajante.js?v=5"></script>
   <!-- Código -->
-  <script src="js/regras.js?v=4"></script>
-  <script src="js/sprites.js?v=4"></script>
-  <script src="js/world.js?v=4"></script>
-  <script src="js/ui.js?v=4"></script>
-  <script src="js/screens.js?v=4"></script>
-  <script src="js/roteiro.js?v=4"></script>
-  <script src="js/mesa.js?v=4"></script>
-  <script src="js/lobby.js?v=4"></script>
-  <script src="js/game.js?v=4"></script>
+  <script src="js/regras.js?v=5"></script>
+  <script src="js/sprites.js?v=5"></script>
+  <script src="js/world.js?v=5"></script>
+  <script src="js/ui.js?v=5"></script>
+  <script src="js/screens.js?v=5"></script>
+  <script src="js/roteiro.js?v=5"></script>
+  <script src="js/mesa.js?v=5"></script>
+  <script src="js/lobby.js?v=5"></script>
+  <script src="js/game.js?v=5"></script>
 </body>
 </html>

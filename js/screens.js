@@ -30,12 +30,6 @@ const Screens = (() => {
   const $ = id => document.getElementById(id);
   const esc = UI.esc;
 
-  const PALETA = {
-    robe: ['#d2b06e', '#c8553d', '#4f7cac', '#6a9a4a', '#8a5fa8', '#e6e2d6', '#a8683a', '#e8a33a'],
-    hair: ['#2a1a0c', '#4a2c17', '#8a4f1f', '#c9822f', '#e8c97a', '#d8d8d0'],
-    skin: ['#f3cfa6', '#e3b483', '#c99868', '#a0704a', '#6e4a2f'],
-  };
-
   const EXEMPLOS = {
     traco: 'Ex.: "Eu sempre ajudo os mais fracos"',
     ideal: 'Ex.: "Ninguém fica para trás"',
@@ -55,11 +49,9 @@ const Screens = (() => {
     const g = canvas.getContext('2d');
     g.imageSmoothingEnabled = false;
     g.clearRect(0, 0, canvas.width, canvas.height);
-    const s = canvas.width / 16;
-    g.save();
-    g.scale(s, s);
-    Art.person(g, ap, dir, 0);
-    g.restore();
+    const spr = Art.viajante(ap, dir, 0);
+    const s = Math.max(1, Math.floor(Math.min(canvas.width / spr.width, canvas.height / spr.height)));
+    g.drawImage(spr, Math.floor((canvas.width - spr.width * s) / 2), Math.floor((canvas.height - spr.height * s) / 2), spr.width * s, spr.height * s);
   }
 
   function progresso(v) {
@@ -121,7 +113,7 @@ const Screens = (() => {
     const v = {
       id: 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
       nome: '', camada: 'aprendiz',
-      aparencia: { robe: PALETA.robe[0], hair: PALETA.hair[1], skin: PALETA.skin[1], long: false, lenco: null },
+      aparencia: { ...window.DADOS_VIAJANTE.padrao },
       descricao: '', favorita: null, virtudes: {}, antecedente: null,
       traco: '', ideal: '', vinculo: '', defeito: '', pergunta: '',
     };
@@ -129,19 +121,33 @@ const Screens = (() => {
     const preview = $('cr-preview');
     let previewDir = 0;
 
-    function sw(kind) {
-      return PALETA[kind].map(c => `<button type="button" class="sw ${v.aparencia[kind] === c ? 'on' : ''}" data-kind="${kind}" data-c="${c}" style="background:${c}" aria-label="cor"></button>`).join('');
-    }
+    // Opções de aparência (vêm de dados/viajante.js).
+    const OPCOES = [
+      ['estilo', 'Cabelo', 'estilos', o => null],
+      ['cabelo', 'Cor do cabelo', 'cabelos', o => o.tons[1]],
+      ['pele', 'Pele', 'peles', o => o.tons[0]],
+      ['olhos', 'Olhos', 'olhos', o => o.cor],
+      ['tunica', 'Túnica', 'tunicas', o => o.tons[0]],
+      ['camisa', 'Camisa', 'camisas', o => o.cor],
+      ['faixa', 'Faixa', 'faixas', o => o.cor],
+      ['calca', 'Calça', 'calcas', o => o.cor],
+    ];
 
     function renderAparencia() {
-      $('cr-robe').innerHTML = sw('robe');
-      $('cr-hair').innerHTML = sw('hair');
-      $('cr-skin').innerHTML = sw('skin');
-      f.querySelectorAll('.sw').forEach(b => b.onclick = () => {
-        v.aparencia[b.dataset.kind] = b.dataset.c;
+      const D = window.DADOS_VIAJANTE;
+      $('cr-aparencia').innerHTML = OPCOES.map(([campo, rotulo, lista, cor]) => `
+        <div class="sw-row"><span>${rotulo}</span><div>${D[lista].map(o => {
+          const on = v.aparencia[campo] === o.id ? 'on' : '';
+          const c = cor(o);
+          return c
+            ? `<button type="button" class="sw ${on}" data-campo="${campo}" data-id="${o.id}" style="background:${c}" title="${esc(o.nome)}" aria-label="${esc(o.nome)}"></button>`
+            : `<button type="button" class="chip ${on}" data-campo="${campo}" data-id="${o.id}">${esc(o.nome)}</button>`;
+        }).join('')}</div></div>`).join('');
+      $('cr-aparencia').querySelectorAll('button').forEach(b => b.onclick = () => {
+        v.aparencia[b.dataset.campo] = b.dataset.id;
         renderAparencia();
       });
-      drawPreview(preview, v.aparencia, ['down', 'right', 'up', 'left'][previewDir]);
+      drawPreview(preview, v.aparencia, ['down', 'up'][previewDir % 2]);
     }
 
     function renderCamadas() {
@@ -261,12 +267,8 @@ const Screens = (() => {
       $('cr-' + k).placeholder = EXEMPLOS[k];
     });
     $('cr-pergunta').value = '';
-    $('cr-long').checked = false;
-    $('cr-lenco').checked = false;
     $('cr-error').textContent = '';
 
-    $('cr-long').onchange = e => { v.aparencia.long = e.target.checked; renderAparencia(); };
-    $('cr-lenco').onchange = e => { v.aparencia.lenco = e.target.checked ? '#e9dcbc' : null; renderAparencia(); };
     $('cr-turn').onclick = () => { previewDir = (previewDir + 1) % 4; renderAparencia(); };
     $('cr-pergunta').oninput = e => { v.pergunta = e.target.value; cantosUI(); };
     $('cr-back').onclick = () => title(handlers);

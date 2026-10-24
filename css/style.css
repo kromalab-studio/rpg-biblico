@@ -156,7 +156,7 @@ label.toggle input { width: 20px; height: 20px; accent-color: var(--teal); }
 #cr-preview { width: 128px; height: 128px; image-rendering: pixelated; background: radial-gradient(#b8e69a, #7cc25a); border-radius: 6px; border: var(--line); box-shadow: var(--pop-sm); }
 .cr-fields { flex: 1; min-width: 240px; }
 .sw-row { display: flex; align-items: center; gap: 12px; margin: 10px 0; }
-.sw-row > span { width: 60px; color: var(--muted); font-weight: 700; }
+.sw-row > span { width: 112px; flex-shrink: 0; color: var(--muted); font-weight: 700; }
 .sw-row > div { display: flex; gap: 8px; flex-wrap: wrap; }
 .sw { width: 34px; height: 34px; min-height: 34px; padding: 0; border-radius: 50%; border: 2px solid var(--ink); box-shadow: none; }
 .sw.on { border: 3px solid #fff; box-shadow: 0 0 0 3px var(--ink); }

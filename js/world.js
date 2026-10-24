@@ -2,18 +2,11 @@
 const World = (() => {
   const W = 30, H = 22, CX = 15, CY = 11;
 
-  const P = {
-    inicio: { x: 15, y: 13 },
-    luz: { x: 15, y: 9 },
-    aguas: { x: 18, y: 11 },
-    terra: { x: 13, y: 10 },
-    jardim: { x: 11, y: 13 }, // centro do canteiro 3x3
-    ceu: { x: 21, y: 10 },
-    arvore: { x: 15, y: 6 },   // a grande árvore (sólida)
-    sombra: { x: 15, y: 7 },   // lugar de descanso, sob a árvore
-    fruta: { x: 19, y: 15 },   // árvore com frutos maduros
-    lago: { x: 22, y: 6 },
-  };
+  // Pontos do mapa: vêm do arquivo da aventura (dados/aventura1.js → mapa).
+  let P = {};
+  function usar(av) {
+    P = { ...av.mapa.pontos, inicio: av.mapa.inicio };
+  }
 
   function hash(x, y, s) {
     let h = (x * 374761393 + y * 668265263 + s * 982451653) | 0;
@@ -144,5 +137,5 @@ const World = (() => {
     return seen;
   }
 
-  return { W, H, CX, CY, P, build, shorePoint, hash };
+  return { W, H, CX, CY, get P() { return P; }, usar, build, shorePoint, hash };
 })();

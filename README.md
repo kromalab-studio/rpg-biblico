@@ -51,18 +51,34 @@ As falas de Deus ("A Voz") usam uma voz masculina em português, se o aparelho t
 ## Estrutura
 
 ```
-index.html          telas, palco do jogo e modais
-css/style.css       visual
-js/data.js          regras: Virtudes, idades, Antecedentes, níveis, Números da Prova
-js/sprites.js       arte em pixel (tiles, Viajante, animais, luz)
-js/world.js         mapa da Criação, que muda a cada dia
-js/ui.js            diálogo, escolhas, perguntas, Prova com dado, narração
-js/screens.js       salvamento, tela inicial, criação do Viajante, Ficha
-js/aventura1.js     roteiro da Aventura 1 — No Princípio
-js/game.js          motor: movimento, câmera, entrada, iluminação, cenas
+index.html            telas, palco do jogo e modais
+css/style.css         visual
+dados/                ← CONTEÚDO EDITÁVEL (não precisa mexer no código)
+  regras.js           Virtudes, idades, Antecedentes, níveis, Números da Prova, textos do dízimo
+  aventura1.js        Aventura 1 — No Princípio: falas, escolhas, Provas, dias, animais, encerramento
+js/                   código
+  regras.js           funções das regras (bônus, nível atual...)
+  roteiro.js          interpretador: lê a aventura de dados/ e conduz 1 ou vários Viajantes
+  mesa.js             a mesa (quem joga) e as recompensas; modo solo
+  lobby.js            como uma partida começa
+  game.js             motor: mapa, movimento, câmera, entrada, luz
+  world.js            o mapa da Criação, que muda a cada dia
+  sprites.js          arte em pixel 32x32 (tiles, Viajante, animais)
+  ui.js               diálogo, escolhas, perguntas, Prova com dado, narração
+  screens.js          salvamento, tela inicial, criação do Viajante, Ficha
+materiais/            os PDFs originais do jogo (fonte da verdade) e versões em texto
 ```
 
-Para criar uma nova aventura, faça um arquivo como `aventura1.js`, com as funções `entities`, `objective`, `intro`, `startDay`, `ending` etc. Os passos são funções `async` que usam `say`, `choose`, `ask`, `prova`, `espigas` e `selo`.
+### Editando a aventura
+
+Abra `dados/aventura1.js`. O começo do arquivo explica o formato. Em resumo:
+
+- As falas são textos no formato `'VOZ|Olá!'` (Deus) ou `'|E houve luz.'` (narração).
+- `{ cada: [...] }` faz cada Viajante viver os passos na própria tela.
+- `{ escolha: {...} }`, `{ prova: {...} }` e `{ pergunta: {...} }` são as interações.
+- `{ espigas: 1, motivo: '...' }` e `{ selo: '...' }` são as recompensas.
+
+Depois de editar, recarregue a página. Se a página ficar em branco, provavelmente faltou uma vírgula ou aspas: abra o console do navegador (F12) para ver a linha com o erro.
 
 ## Decisões a confirmar
 

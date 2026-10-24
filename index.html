@@ -153,6 +153,7 @@
           <div class="row">
             <button data-act="resume">Continuar</button>
             <button data-act="ficha" class="ghost">Ver a Ficha</button>
+            <button data-act="restart" class="ghost" id="pause-restart">Reiniciar aventura</button>
             <button data-act="title" class="ghost">Salvar e sair</button>
           </div>
         </div>
@@ -177,12 +178,18 @@
   <div id="modal" class="hidden"><div id="modal-card" role="dialog" aria-modal="true"></div></div>
   <div id="toasts"></div>
 
-  <script src="js/data.js"></script>
+  <!-- Conteúdo editável -->
+  <script src="dados/regras.js"></script>
+  <script src="dados/aventura1.js"></script>
+  <!-- Código -->
+  <script src="js/regras.js"></script>
   <script src="js/sprites.js"></script>
   <script src="js/world.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/screens.js"></script>
-  <script src="js/aventura1.js"></script>
+  <script src="js/roteiro.js"></script>
+  <script src="js/mesa.js"></script>
+  <script src="js/lobby.js"></script>
   <script src="js/game.js"></script>
 </body>
 </html>

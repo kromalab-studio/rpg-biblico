@@ -325,7 +325,15 @@ const UI = (() => {
     return new Promise(res => setTimeout(() => { el.classList.add('hidden'); res(); }, 3000));
   }
 
+  // Fecha qualquer diálogo ou modal aberto (ao sair de uma partida).
+  function closeAll() {
+    if (dlg) { const r = dlg.resolve; dlg = null; $('dialog').classList.add('hidden'); r(); }
+    if (modalOpen) { $('modal').classList.add('hidden'); $('modal-card').innerHTML = ''; modalOpen = false; }
+    hush();
+  }
+
   return {
+    closeAll,
     get vozes() { return { narrador: ptVoice && ptVoice.name, deus: maleVoice ? maleVoice.name : '(voz padrão, mais grave)' }; },
     testVoices, settings, say, advance, updateDialog, choose, ask, card, prova, toast, banner, speak, hush, esc,
     get busy() { return !!dlg || modalOpen; },

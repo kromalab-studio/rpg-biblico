@@ -1,4 +1,5 @@
-// Motor: laço principal, movimento, câmera, entrada, iluminação e ponte com o roteiro da aventura.
+// Motor: laço principal, mapa, movimento, câmera, entrada e iluminação.
+// O conteúdo vem de dados/ e é conduzido por js/roteiro.js por meio de uma mesa (js/mesa.js).
 const Game = (() => {
   const T = Art.T, VW = 20, VH = 15, SPEED = 4.5;
   const canvas = document.getElementById('screen');
@@ -9,36 +10,35 @@ const Game = (() => {
 
   const DIRS = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
 
-  let v = null;           // Viajante atual
-  let st = null;          // estado da aventura (v.av1)
+  let mesa = null;        // mesa atual (solo ou online)
+  let st = null;          // estado da aventura (mesa.st)
+  let me = null;          // id do meu Viajante
+  let eu = null;          // { x, y, dir } — minha posição
   let mode = 'title';     // title | world | scene | pause
   let tiles = null, prevTiles = null;
   let reveal = null;      // { x, y, t } transição radial entre mapas
-  let mov = null, path = [];
+  let mov = null, path = [], pathFace = null;
   let stepFlip = false;
   let time = 0;
   let ents = [];
-  let fx = { dark: 0, fog: 0, night: 0, gold: 0 };
+  let outros = {};        // outros Viajantes na mesa online: jid → { x, y, dir, ox, oy, t, v }
+  let fx = { dark: 0, fog: 0, night: 0, stars: 0, gold: 0 };
   let birds = [], fish = [];
   let held = [];
   let bumpCooldown = 0;
+  let onMove = null;      // avisado quando eu mudo de casa (para a rede)
 
-  // ---------- Estado e salvamento ----------
-  function newAdventure() {
-    return {
-      dia: 1, x: World.P.inicio.x, y: World.P.inicio.y, dir: 'up',
-      c: { nomes: {} }, espigas: 0, selos: 0, concluida: false,
-    };
-  }
+  const minhaV = () => mesa.jogadores.find(j => j.id === me).v;
 
-  function save() {
-    if (!v) return;
-    st.x = pos().x; st.y = pos().y;
-    Store.save();
+  // ---------- Salvamento ----------
+  function salvar() {
+    if (!mesa) return;
+    if (eu) st.pos[me] = { x: pos().x, y: pos().y, dir: eu.dir };
+    if (mesa.salvar) mesa.salvar(); else Store.save();
   }
 
   function pos() {
-    return mov ? { x: mov.tx, y: mov.ty } : { x: st.x, y: st.y };
+    return mov ? { x: mov.tx, y: mov.ty } : { x: eu.x, y: eu.y };
   }
 
   // ---------- Mundo ----------
@@ -70,17 +70,69 @@ const Game = (() => {
     return shownTile(x, y);
   }
 
-  function refreshEntities() {
-    const old = new Map(ents.map(e => [e.id, e]));
-    ents = Adventure.entities(st, tiles).map(e => {
-      const o = old.get(e.id);
-      if (o && e.wander && o.def.kind === e.kind) {
-        o.def = e;
-        return o;
+  const livre = t => t && !Art.SOLID.has(t) && t !== 'G';
+
+  function nearestIn(p, ok) {
+    for (let r = 0; r < 10; r++) {
+      for (let dy = -r; dy <= r; dy++) {
+        for (let dx = -r; dx <= r; dx++) {
+          const row = tiles[p.y + dy];
+          if (row && ok(row[p.x + dx])) return { x: p.x + dx, y: p.y + dy };
+        }
       }
-      return { id: e.id, def: e, x: e.x, y: e.y, ox: e.x, oy: e.y, t: 1, dir: e.dir || 'down', timer: 1 + Math.random() * 3 };
-    });
+    }
+    return p;
+  }
+
+  // Entidades vêm dos dados da aventura e do estado da mesa.
+  function computeEntities() {
+    const av = mesa.av, c = st.c, out = [];
+    const P = World.P;
+    for (const p of Roteiro.pontosAtivos(mesa)) {
+      const xy = p.onde === 'praia' ? World.shorePoint(tiles) : P[p.onde];
+      out.push({ id: 's-' + p.id, kind: 'sparkle', x: xy.x, y: xy.y, onTouch: true, acao: { tipo: 'ponto', id: p.id } });
+    }
+    if (c.terra && c.animais) {
+      const shore = World.shorePoint(tiles);
+      mesa.jogadores.forEach((j, i) => {
+        const r = st.resp[j.id] || {};
+        if (!r.animal) return;
+        const marinho = ['peixe', 'golfinho', 'baleia'].includes(r.animal.valor);
+        const base = { x: shore.x - 1, y: shore.y + (i % 2 ? i : -i) };
+        const xy = nearestIn(base, marinho ? t => t === '~' : t => t === ':' || t === '.');
+        out.push({ id: 'cr-' + j.id, kind: r.animal.valor, x: xy.x, y: xy.y, solid: false, label: mesa.jogadores.length > 1 ? j.v.nome : null });
+      });
+    }
+    if (c.animaisTerra) {
+      for (const an of av.animaisTerra) {
+        const nome = st.nomes[an.id];
+        out.push({
+          id: 'a-' + an.id, kind: an.id, x: an.x, y: an.y, wander: true,
+          label: nome ? nome.nome : null, marker: !nome && st.dia === 6, onTouch: true,
+          acao: { tipo: 'nomear', id: an.id },
+        });
+      }
+    }
+    return out;
+  }
+
+  function refreshEntities() {
+    if (!mesa) return;
+    const old = new Map(ents.map(e => [e.id, e]));
+    ents = [];
+    for (const e of computeEntities()) {
+      const o = old.get(e.id);
+      if (o && e.wander) {
+        o.def = e;
+        ents.push(o);
+        continue;
+      }
+      let { x, y } = e;
+      if (e.wander && !livre(tileAt(x, y))) ({ x, y } = nearestIn({ x, y }, t => livre(t) && t !== ':'));
+      ents.push({ id: e.id, def: e, x, y, ox: x, oy: y, t: 1, dir: e.dir || 'down', timer: 1 + Math.random() * 3 });
+    }
     if (st.c.mar && !fish.length) spawnSea();
+    updateHud();
   }
 
   function spawnSea() {
@@ -97,7 +149,7 @@ const Game = (() => {
     for (let i = 0; i < 6; i++) {
       birds.push({
         x: Math.random() * World.W * T, y: Math.random() * World.H * T,
-        vx: (Math.random() < 0.5 ? -1 : 1) * (14 + Math.random() * 12), vy: (Math.random() - 0.5) * 6,
+        vx: (Math.random() < 0.5 ? -1 : 1) * (28 + Math.random() * 24), vy: (Math.random() - 0.5) * 12,
         kind: i % 3 === 0 ? 'aguia' : 'pomba',
       });
     }
@@ -111,31 +163,67 @@ const Game = (() => {
     return Art.SOLID.has(tileAt(x, y)) || !!entAt(x, y);
   }
 
+  // ---------- Efeitos pedidos pelo roteiro ----------
+  const FLAGS = ['luz', 'ceu', 'estrelas', 'amanhecer', 'mar', 'animais', 'animaisTerra', 'pessoas', 'descanso'];
+
+  function efeito(nome) {
+    const c = st.c, P = World.P;
+    if (FLAGS.includes(nome)) c[nome] = true;
+    if (nome === 'terra') { c.terra = true; rebuild(P.terra); }
+    else if (nome === 'plantar') {
+      c.plantado = true;
+      c.jardim = (st.grupo.jardim && st.grupo.jardim.valor) || 'flores';
+      rebuild(P.jardim);
+    } else refreshEntities();
+    salvar();
+    if (mesa.aoEfeito) mesa.aoEfeito(nome);
+  }
+
+  function novoDia() {
+    refreshEntities();
+    salvar();
+    if (mesa.aoEfeito) mesa.aoEfeito('dia');
+  }
+
+  // Aplica um estado vindo do anfitrião (online).
+  function sincronizar(novoSt) {
+    if (!st) return;
+    const terraAntes = st.c.terra, plantadoAntes = st.c.plantado;
+    const minha = st.pos[me];
+    Object.assign(st, novoSt);
+    if (minha) st.pos[me] = minha;
+    if (st.c.plantado !== plantadoAntes) rebuild(World.P.jardim);
+    else if (st.c.terra !== terraAntes) rebuild(World.P.terra);
+    else refreshEntities();
+  }
+
   // ---------- Movimento ----------
   function tryMove(dir) {
-    st.dir = dir;
+    eu.dir = dir;
     const [dx, dy] = DIRS[dir];
-    const nx = st.x + dx, ny = st.y + dy;
+    const nx = eu.x + dx, ny = eu.y + dy;
     const e = entAt(nx, ny);
     if (e) {
       if (bumpCooldown <= 0 && e.def.onTouch) { bumpCooldown = 0.6; interactWith(e); }
       path = [];
+      if (onMove) onMove({ x: eu.x, y: eu.y, dir });
       return false;
     }
     if (Art.SOLID.has(tileAt(nx, ny))) { path = []; return false; }
-    mov = { fx: st.x, fy: st.y, tx: nx, ty: ny, t: 0 };
+    mov = { fx: eu.x, fy: eu.y, tx: nx, ty: ny, t: 0 };
     stepFlip = !stepFlip;
+    if (onMove) onMove({ x: nx, y: ny, dir });
     return true;
   }
 
   function finishMove() {
-    st.x = mov.tx; st.y = mov.ty;
+    eu.x = mov.tx; eu.y = mov.ty;
     mov = null;
   }
 
   function facing() {
-    const [dx, dy] = DIRS[st.dir];
-    return { x: st.x + dx, y: st.y + dy };
+    const [dx, dy] = DIRS[eu.dir];
+    return { x: eu.x + dx, y: eu.y + dy };
   }
 
   function interact() {
@@ -143,20 +231,78 @@ const Game = (() => {
     const e = ents.find(n => n.x === f.x && n.y === f.y);
     if (e) return interactWith(e);
     const t = tileAt(f.x, f.y);
-    const fn = Adventure.tileTalk(st, t, f);
-    if (fn) scene(fn);
+    const P = World.P;
+    if (t === 'Y' && f.x === P.fruta.x && f.y === P.fruta.y - 1) return acionar({ tipo: 'colher' });
+    const msg = mesa.av.tiles[t];
+    if (msg) cenaLocal(() => UI.say([Roteiro.line(mesa, msg, { jid: me })]));
   }
 
   function interactWith(e) {
-    if (!e.def.talk) return;
+    if (!e.def.acao) return;
     if (e.def.wander) {
       const p = pos();
       e.dir = p.x < e.x ? 'left' : 'right';
     }
-    scene(() => e.def.talk(api, e));
+    acionar(e.def.acao);
   }
 
-  // Encontra um caminho até o toque do jogador (BFS).
+  // Pede para o roteiro rodar algo. Na mesa online, quem roda é o anfitrião.
+  function acionar(acao) {
+    if (mode !== 'world' || UI.busy) return;
+    if (mesa.acionar) return mesa.acionar(acao, me);
+    executar(acao, me);
+  }
+
+  // Roda uma ação do roteiro neste aparelho (solo, ou o anfitrião no online).
+  function executar(acao, jid) {
+    if (!mesa) return;
+    if (mesa.ocupada && acao.tipo === 'ponto') return;
+    let fn;
+    if (acao.tipo === 'ponto') {
+      const p = Roteiro.pontosAtivos(mesa).find(x => x.id === acao.id);
+      if (!p) return;
+      fn = () => Roteiro.passo(mesa, p.passo);
+    } else if (acao.tipo === 'nomear') {
+      const an = mesa.av.animaisTerra.find(a => a.id === acao.id);
+      if (!an) return;
+      fn = () => Roteiro.nomear(mesa, jid, an);
+    } else if (acao.tipo === 'colher') {
+      fn = () => Roteiro.colher(mesa, jid);
+    } else return;
+    const global = acao.tipo === 'ponto';
+    if (global) mesa.ocupada = true;
+    return cena(fn, global, global || jid === me);
+  }
+
+  // ---------- Cenas ----------
+  async function cena(fn, global, bloquear = true) {
+    if (bloquear) { mode = 'scene'; path = []; held = []; }
+    try {
+      await fn();
+    } catch (err) {
+      console.error(err);
+    }
+    if (!mesa) return;
+    if (global) mesa.ocupada = false;
+    if (bloquear && mode === 'scene') mode = 'world';
+    refreshEntities();
+    salvar();
+    if (st.concluida && global) fim();
+  }
+
+  async function cenaLocal(fn) {
+    if (mode !== 'world') return;
+    mode = 'scene';
+    try { await fn(); } catch (err) { console.error(err); }
+    if (mode === 'scene') mode = 'world';
+  }
+
+  function fim() {
+    if (mesa && mesa.aoFim) mesa.aoFim();
+    sair(true);
+  }
+
+  // Caminho até o toque do jogador (busca em largura).
   function findPath(tx, ty) {
     const start = pos();
     const key = (x, y) => y * World.W + x;
@@ -172,17 +318,16 @@ const Game = (() => {
         const out = [];
         let k = key(p.x, p.y);
         while (k !== key(start.x, start.y)) {
-          const x = k % World.W, y = Math.floor(k / World.W);
-          out.unshift({ x, y });
+          out.unshift({ x: k % World.W, y: Math.floor(k / World.W) });
           k = prev.get(k);
         }
         return { steps: out, face: target ? null : { x: tx, y: ty } };
       }
       for (const [dx, dy] of Object.values(DIRS)) {
         const nx = p.x + dx, ny = p.y + dy;
+        if (nx < 0 || ny < 0 || nx >= World.W || ny >= World.H) continue;
         const k = key(nx, ny);
         if (prev.has(k) || blocked(nx, ny)) continue;
-        if (nx < 0 || ny < 0 || nx >= World.W || ny >= World.H) continue;
         prev.set(k, key(p.x, p.y));
         q.push({ x: nx, y: ny });
       }
@@ -190,101 +335,21 @@ const Game = (() => {
     return null;
   }
 
-  let pathFace = null;
-
   function followPath() {
     if (!path.length) {
       if (pathFace) {
         const p = pos();
         const dx = pathFace.x - p.x, dy = pathFace.y - p.y;
-        st.dir = dx > 0 ? 'right' : dx < 0 ? 'left' : dy > 0 ? 'down' : 'up';
+        eu.dir = dx > 0 ? 'right' : dx < 0 ? 'left' : dy > 0 ? 'down' : 'up';
         pathFace = null;
         interact();
       }
       return;
     }
     const n = path.shift();
-    const dx = n.x - st.x, dy = n.y - st.y;
+    const dx = n.x - eu.x, dy = n.y - eu.y;
     const dir = dx > 0 ? 'right' : dx < 0 ? 'left' : dy > 0 ? 'down' : 'up';
     if (!tryMove(dir)) { path = []; pathFace = null; }
-  }
-
-  // ---------- Cenas (roteiro assíncrono) ----------
-  async function scene(fn) {
-    if (mode !== 'world') return;
-    mode = 'scene';
-    path = [];
-    held = [];
-    try {
-      await fn(api);
-    } catch (err) {
-      console.error(err);
-    }
-    if (mode === 'scene') mode = 'world';
-    if (st) refreshEntities();
-    save();
-    updateHud();
-  }
-
-  const api = {
-    get v() { return v; },
-    get st() { return st; },
-    get c() { return st.c; },
-    get voz() { return RULES.camada(v).voz; },
-    get camada() { return RULES.camada(v); },
-    get idade() { return RULES.camadas.findIndex(c => c.id === v.camada); },
-    get pos() { return pos(); },
-    say: lines => UI.say(lines),
-    rebuild: origin => rebuild(origin),
-    refresh: () => { refreshEntities(); updateHud(); },
-    wait: ms => new Promise(r => setTimeout(r, ms)),
-    espigas(n, motivo) {
-      if (n <= 0) return;
-      if (st.revisita) { st.espigas += n; UI.toast(`+${n} 🌾 (passeio)`, 'espiga'); return; }
-      v.espigas += n;
-      v.espigasColhidas += n;
-      st.espigas += n;
-      UI.toast(`+${n} Espiga${n > 1 ? 's' : ''} 🌾 ${motivo || ''}`, 'espiga');
-      updateHud();
-    },
-    gastarEspigas(n) {
-      v.espigas = Math.max(0, v.espigas - n);
-      updateHud();
-    },
-    selo(motivo) {
-      if (st.revisita) { st.selos += 1; UI.toast(`⭐ ${motivo} (passeio)`, 'selo'); return; }
-      v.selos += 1;
-      st.selos += 1;
-      v.registro.push(`${RULES.camada(v).selo} de Virtude — ${motivo}`);
-      UI.toast(`+1 ${RULES.camada(v).selo} ⭐ ${motivo}`, 'selo');
-      updateHud();
-    },
-    lembrar(texto) {
-      v.decisoes.push(texto);
-    },
-    prova: spec => UI.prova(v, { ...spec, espigas: v.espigas, onSpend: n => api.gastarEspigas(n) }),
-    choose: o => UI.choose(o),
-    ask: o => UI.ask(o),
-    card: o => UI.card(o),
-    banner: (a, b) => UI.banner(a, b),
-    async novoDia(n) {
-      await UI.banner(`E foi a tarde e a manhã: o ${['', 'primeiro', 'segundo', 'terceiro', 'quarto', 'quinto', 'sexto', 'sétimo'][n - 1]} dia.`);
-      st.dia = n;
-      refreshEntities();
-      save();
-      updateHud();
-      await Adventure.startDay(api, n);
-    },
-    finish: () => endAdventure(),
-  };
-
-  // ---------- Fim da aventura ----------
-  async function endAdventure() {
-    mode = 'scene';
-    await Adventure.ending(api);
-    st.concluida = true;
-    save();
-    toTitle();
   }
 
   // ---------- Entrada ----------
@@ -368,6 +433,7 @@ const Game = (() => {
   // ---------- Pausa ----------
   function openPause() {
     mode = 'pause';
+    const v = minhaV();
     const cam = RULES.camada(v);
     $('pause-stats').innerHTML = `
       <span>Viajante</span><b>${UI.esc(v.nome)}</b>
@@ -375,8 +441,10 @@ const Game = (() => {
       <span>Pontos de Luz</span><b>${'♥'.repeat(v.luz)}</b>
       <span>Espigas</span><b>🌾 ${v.espigas}</b>
       <span>${UI.esc(cam.selos)}</span><b>⭐ ${v.selos}</b>
-      <span>Cesto da Comunidade</span><b>🧺 ${Store.data.cesto}</b>`;
+      <span>Cesto da Comunidade</span><b>🧺 ${Store.data.cesto}</b>
+      ${mesa.modo === 'online' ? `<span>Sala</span><b>${UI.esc(mesa.codigo || '')}</b>` : ''}`;
     $('opt-narrar-2').checked = UI.settings.narrar;
+    $('pause-restart').classList.toggle('hidden', !mesa.reiniciar);
     $('pause').classList.remove('hidden');
   }
 
@@ -386,11 +454,26 @@ const Game = (() => {
   }
 
   function setupPause() {
-    $('pause').addEventListener('click', e => {
+    $('pause').addEventListener('click', async e => {
       const act = e.target.dataset && e.target.dataset.act;
       if (act === 'resume') closePause();
-      else if (act === 'ficha') { $('pause').classList.add('hidden'); save(); Screens.ficha(v, () => { Screens.hideAll(); openPause(); }); }
-      else if (act === 'title') { closePause(); save(); toTitle(); }
+      else if (act === 'ficha') {
+        $('pause').classList.add('hidden');
+        salvar();
+        Screens.ficha(minhaV(), () => { Screens.hideAll(); openPause(); });
+      } else if (act === 'title') { closePause(); salvar(); sair(true); }
+      else if (act === 'restart') {
+        const ok = await UI.card({
+          title: 'Reiniciar a aventura?',
+          text: 'A aventura volta para o primeiro dia. As Espigas e os Selos ganhos nesta partida serão desfeitos.',
+          buttons: [{ label: 'Cancelar', value: false, ghost: true }, { label: 'Reiniciar', value: true }],
+        });
+        if (!ok) return;
+        closePause();
+        const reiniciar = mesa.reiniciar;
+        sair(false);
+        reiniciar();
+      }
     });
     $('opt-narrar-2').onchange = e => { UI.settings.narrar = e.target.checked; Store.save(); };
   }
@@ -398,23 +481,23 @@ const Game = (() => {
   // ---------- HUD ----------
   let hudCache = '';
   function updateHud() {
-    if (!v || !st) return;
-    const cam = RULES.camada(v);
+    if (!mesa || !st) return;
+    const v = minhaV();
     const hearts = '♥'.repeat(v.luz) + '♡'.repeat(Math.max(0, v.luzMax - v.luz));
-    const html = `<b>${UI.esc(v.nome)}</b> <span class="hp">${hearts}</span><br><span>🌾 ${v.espigas}</span> &nbsp; <span>⭐ ${v.selos}</span>`;
-    const goal = `<b>Dia ${Math.min(st.dia, 7)}</b> · ${UI.esc(Adventure.objective(st, api))}`;
+    const online = mesa.modo === 'online' ? ` <span class="net ${mesa.conectado === false ? 'off' : ''}">● ${mesa.jogadores.length}</span>` : '';
+    const html = `<b>${UI.esc(v.nome)}</b> <span class="hp">${hearts}</span>${online}<br><span>🌾 ${v.espigas}</span> &nbsp; <span>⭐ ${v.selos}</span>`;
+    const goal = `<b>Dia ${Math.min(st.dia, 7)}</b> · ${UI.esc(Roteiro.objetivo(mesa))}`;
     const key = html + goal;
     if (key === hudCache) return;
     hudCache = key;
     $('hud-stats').innerHTML = html;
     $('hud-goal').innerHTML = goal;
-    $('hud-stats').title = `${cam.selos} de Virtude`;
   }
 
   // ---------- Desenho ----------
   function playerPixel() {
     if (mov) return { x: (mov.fx + (mov.tx - mov.fx) * mov.t) * T, y: (mov.fy + (mov.ty - mov.fy) * mov.t) * T };
-    return { x: st.x * T, y: st.y * T };
+    return { x: eu.x * T, y: eu.y * T };
   }
 
   function camera() {
@@ -472,10 +555,24 @@ const Game = (() => {
         else if (e.def.marker) Art.label(ctx, '?', ex + T / 2, ey - 1 + Math.sin(time * 4) * 3, '#ffe7a3');
       },
     }));
+    for (const o of Object.values(outros)) {
+      const ox = (o.ox + (o.x - o.ox) * o.t) * T, oy = (o.oy + (o.y - o.oy) * o.t) * T;
+      list.push({
+        y: oy / T,
+        draw: () => {
+          Art.entity(ctx, { kind: 'person', ...o.v.aparencia }, ox - cam.x, oy - cam.y, o.dir, o.t < 1 ? (stepFlip ? 1 : 2) : 0, time);
+          Art.label(ctx, o.v.nome, ox - cam.x + T / 2, oy - cam.y - 1, '#cfe8ff');
+        },
+      });
+    }
     const pp = playerPixel();
+    const v = minhaV();
     list.push({
       y: pp.y / T,
-      draw: () => Art.entity(ctx, { kind: 'person', ...v.aparencia }, pp.x - cam.x, pp.y - cam.y, st.dir, mov ? (stepFlip ? 1 : 2) * (mov.t < 0.5 ? 1 : 0) : 0, time),
+      draw: () => {
+        Art.entity(ctx, { kind: 'person', ...v.aparencia }, pp.x - cam.x, pp.y - cam.y, eu.dir, mov ? (stepFlip ? 1 : 2) * (mov.t < 0.5 ? 1 : 0) : 0, time);
+        if (Object.keys(outros).length) Art.label(ctx, v.nome, pp.x - cam.x + T / 2, pp.y - cam.y - 1);
+      },
     });
     list.sort((a, b) => a.y - b.y).forEach(o => o.draw());
 
@@ -507,21 +604,24 @@ const Game = (() => {
     if (fx.night > 0.01) {
       ctx.fillStyle = `rgba(12,18,56,${0.62 * fx.night})`;
       ctx.fillRect(0, 0, W, H);
-      const R = Art.rng(7);
-      for (let i = 0; i < 140; i++) {
-        const sx = R() * W, sy = R() * H, tw = 0.5 + 0.5 * Math.sin(time * 3 + i);
-        ctx.fillStyle = `rgba(255,250,220,${fx.night * (0.4 + 0.6 * tw)})`;
-        const sz = i % 9 === 0 ? 3 : i % 3 === 0 ? 2 : 1;
-        ctx.fillRect(Math.round(sx), Math.round(sy), sz, sz);
+      const s = fx.night * fx.stars;
+      if (s > 0.01) {
+        const R = Art.rng(7);
+        for (let i = 0; i < 140; i++) {
+          const sx = R() * W, sy = R() * H, tw = 0.5 + 0.5 * Math.sin(time * 3 + i);
+          ctx.fillStyle = `rgba(255,250,220,${s * (0.4 + 0.6 * tw)})`;
+          const sz = i % 9 === 0 ? 3 : i % 3 === 0 ? 2 : 1;
+          ctx.fillRect(Math.round(sx), Math.round(sy), sz, sz);
+        }
+        ctx.fillStyle = `rgba(250,246,225,${s})`;
+        ctx.beginPath();
+        ctx.arc(W - 80, 68, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = `rgba(12,18,56,${s})`;
+        ctx.beginPath();
+        ctx.arc(W - 70, 62, 18, 0, Math.PI * 2);
+        ctx.fill();
       }
-      ctx.fillStyle = `rgba(250,246,225,${fx.night})`;
-      ctx.beginPath();
-      ctx.arc(W - 80, 68, 20, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = `rgba(12,18,56,${fx.night})`;
-      ctx.beginPath();
-      ctx.arc(W - 70, 62, 18, 0, Math.PI * 2);
-      ctx.fill();
     }
     if (fx.gold > 0.01) {
       ctx.fillStyle = `rgba(255,190,110,${0.16 * fx.gold})`;
@@ -534,7 +634,6 @@ const Game = (() => {
       grd.addColorStop(1, `rgba(4,4,12,${0.97 * fx.dark})`);
       ctx.fillStyle = grd;
       ctx.fillRect(0, 0, W, H);
-      // O ponto de luz brilha através da escuridão.
       for (const e of ents) {
         if (e.def.kind !== 'sparkle') continue;
         ctx.save();
@@ -553,30 +652,21 @@ const Game = (() => {
     g.addColorStop(1, '#e8a85a');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
-    const R = Art.rng(3);
-    for (let i = 0; i < 90; i++) {
-      const sx = R() * W, sy = R() * H * 0.6;
-      ctx.fillStyle = `rgba(255,250,220,${0.3 + 0.5 * Math.abs(Math.sin(time * 1.5 + i))})`;
-      ctx.fillRect(Math.round(sx), Math.round(sy), 1, 1);
-    }
-    const sunY = H * 0.78;
-    const sg = ctx.createRadialGradient(W / 2, sunY, 8, W / 2, sunY, 180);
-    sg.addColorStop(0, 'rgba(255,240,190,0.95)');
-    sg.addColorStop(1, 'rgba(255,200,120,0)');
-    ctx.fillStyle = sg;
-    ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = '#2f4f2a';
-    ctx.beginPath();
-    ctx.moveTo(0, H);
-    for (let x = 0; x <= W; x += 4) ctx.lineTo(x, H * 0.82 - Math.sin(x * 0.03) * 8 - Math.sin(x * 0.07 + 1) * 4);
-    ctx.lineTo(W, H);
-    ctx.fill();
-    ctx.fillStyle = '#1f3a1c';
-    ctx.beginPath();
-    ctx.moveTo(0, H);
-    for (let x = 0; x <= W; x += 4) ctx.lineTo(x, H * 0.9 - Math.sin(x * 0.05 + 2) * 6);
-    ctx.lineTo(W, H);
-    ctx.fill();
+  }
+
+  // Luz e clima a partir das regras em dados/ (aventura.iluminacao).
+  function lighting() {
+    const L = mesa.av.iluminacao || {};
+    const ok = q => {
+      if (!q) return false;
+      if (q.dia && st.dia !== q.dia) return false;
+      if (q.diaMin && st.dia < q.diaMin) return false;
+      return Roteiro.flags(st.c, q);
+    };
+    return {
+      dark: ok(L.escuro) ? 1 : 0, fog: ok(L.nevoa) ? 1 : 0, night: ok(L.noite) ? 1 : 0,
+      stars: ok(L.estrelas) ? 1 : 0, gold: ok(L.dourado) ? 1 : 0,
+    };
   }
 
   // ---------- Atualização ----------
@@ -589,11 +679,8 @@ const Game = (() => {
     UI.updateDialog(dt);
     if (!st || mode === 'title') return;
 
-    const target = Adventure.lighting(st);
-    fx.dark = approach(fx.dark, target.dark, dt, 0.35);
-    fx.fog = approach(fx.fog, target.fog, dt, 0.4);
-    fx.night = approach(fx.night, target.night, dt, 0.4);
-    fx.gold = approach(fx.gold, target.gold, dt, 0.4);
+    const target = lighting();
+    for (const k of Object.keys(fx)) fx[k] = approach(fx[k], target[k], dt, k === 'dark' ? 0.35 : 0.4);
 
     if (reveal) {
       reveal.t += dt * 9;
@@ -610,28 +697,32 @@ const Game = (() => {
       else if (path.length || pathFace) followPath();
     }
 
+    for (const o of Object.values(outros)) if (o.t < 1) o.t = Math.min(1, o.t + dt * SPEED);
+
+    // Animais passeiam (no online, só o anfitrião decide para onde; os outros seguem).
     const p = pos();
     for (const e of ents) {
       if (e.t < 1) { e.t = Math.min(1, e.t + dt * 2.5); continue; }
-      if (!e.def.wander) continue;
+      if (!e.def.wander || !mesa.anfitriao) continue;
       e.timer -= dt;
       if (e.timer > 0) continue;
       e.timer = 1.5 + Math.random() * 3;
-      const dirs = Object.entries(DIRS);
-      const [name, [dx, dy]] = dirs[(Math.random() * 4) | 0];
+      const [name, [dx, dy]] = Object.entries(DIRS)[(Math.random() * 4) | 0];
       const nx = e.x + dx, ny = e.y + dy;
+      const ocupado = q => q.x === nx && q.y === ny;
       const pl = mov ? [{ x: mov.fx, y: mov.fy }, { x: mov.tx, y: mov.ty }] : [p];
-      if (blocked(nx, ny) || pl.some(q => q.x === nx && q.y === ny)) continue;
+      if (blocked(nx, ny) || pl.some(ocupado) || Object.values(outros).some(ocupado)) continue;
       if (tileAt(nx, ny) === ':' && Math.random() < 0.7) continue;
       e.ox = e.x; e.oy = e.y; e.x = nx; e.y = ny; e.t = 0;
       if (dx) e.dir = name;
+      if (mesa.aoAnimal) mesa.aoAnimal(e.id, nx, ny, e.dir);
     }
 
     for (const b of birds) {
       b.x += b.vx * dt;
-      b.y += b.vy * dt + Math.sin(time + b.x * 0.01) * 0.2;
-      if (b.x < -40) b.x = World.W * T + 30;
-      if (b.x > World.W * T + 40) b.x = -30;
+      b.y += b.vy * dt + Math.sin(time + b.x * 0.01) * 0.4;
+      if (b.x < -80) b.x = World.W * T + 60;
+      if (b.x > World.W * T + 80) b.x = -60;
       if (b.y < 0 || b.y > World.H * T) b.vy = -b.vy;
     }
     updateHud();
@@ -646,58 +737,79 @@ const Game = (() => {
     requestAnimationFrame(frame);
   }
 
-  // ---------- Fluxo de telas ----------
-  function toTitle() {
+  // ---------- Fluxo ----------
+  function sair(voltar = true) {
+    const m = mesa;
     mode = 'title';
-    v = null; st = null; tiles = null; ents = []; fish = []; birds = [];
+    mesa = null; st = null; me = null; eu = null; tiles = null;
+    ents = []; fish = []; birds = []; outros = {}; onMove = null;
+    UI.closeAll();
     $('stage-wrap').classList.remove('playing');
     $('hud').classList.add('hidden');
     $('pause').classList.add('hidden');
     hudCache = '';
-    Screens.title({ play });
+    if (m && m.aoSair) m.aoSair();
+    if (voltar) Screens.title(Lobby.handlers);
   }
 
-  async function play(viajante) {
-    v = viajante;
-    if (!v.av1 || v.av1.concluida) {
-      const revisita = v.aventurasConcluidas > 0;
-      if (revisita) {
-        const again = await UI.card({
-          title: 'Rever "No Princípio"?',
-          text: 'A aventura já foi concluída. Você pode passear por ela de novo — as Espigas e os Selos desta vez não contam, para manter a ficha justa.',
-          buttons: [{ label: 'Voltar', value: false, ghost: true }, { label: 'Passear de novo', value: true }],
-        });
-        if (!again) return;
-      }
-      v.av1 = newAdventure();
-      v.av1.revisita = revisita;
-    }
-    st = v.av1;
-    v.luz = v.luzMax; // início de aventura: recupera todos os Pontos de Luz
+  // Começa (ou continua) uma mesa já montada (solo ou online).
+  function iniciar(m, opts = {}) {
+    mesa = m;
+    st = m.st;
+    me = m.eu;
+    World.usar(m.av);
+    const ini = st.pos[me] || m.av.mapa.inicio;
+    eu = { x: ini.x + (st.pos[me] ? 0 : (opts.indice || 0)), y: ini.y, dir: ini.dir || 'up' };
+    for (const j of m.jogadores) j.v.luz = j.v.luzMax; // início de aventura: recupera os Pontos de Luz
     Screens.hideAll();
     $('stage-wrap').classList.add('playing');
     $('hud').classList.remove('hidden');
-    mov = null; path = []; held = []; reveal = null; prevTiles = null; fish = []; birds = []; ents = [];
+    mov = null; path = []; held = []; reveal = null; prevTiles = null; fish = []; birds = []; ents = []; outros = {};
+    tiles = null;
     rebuild(null);
-    const t = Adventure.lighting(st);
-    fx = { ...t };
+    fx = { ...lighting() };
     mode = 'world';
+    onMove = opts.onMove || null;
     updateHud();
-    save();
+    salvar();
+    if (!mesa.anfitriao) return;
     if (!st.iniciada) {
       st.iniciada = true;
-      scene(a => Adventure.intro(a));
-    } else {
-      scene(a => a.say([`|Bem-vindo de volta, ${v.nome}. A jornada continua no dia ${Math.min(st.dia, 7)}.`]));
+      mesa.ocupada = true;
+      cena(() => Roteiro.abertura(mesa), true);
+    } else if (opts.boasVindas !== false) {
+      cenaLocal(() => UI.say([{ who: '', text: `Bem-vindo de volta! A jornada continua no dia ${Math.min(st.dia, 7)}.` }]));
     }
   }
+
+  // ---------- Online: posições dos outros ----------
+  function moverOutro(jid, p, v) {
+    let o = outros[jid];
+    if (!o) {
+      outros[jid] = { x: p.x, y: p.y, ox: p.x, oy: p.y, t: 1, dir: p.dir || 'down', v };
+      return;
+    }
+    if (v) o.v = v;
+    o.ox = o.ox + (o.x - o.ox) * o.t; o.oy = o.oy + (o.y - o.oy) * o.t;
+    o.x = p.x; o.y = p.y; o.dir = p.dir || o.dir; o.t = 0;
+  }
+
+  function removerOutro(jid) { delete outros[jid]; }
+
+  function moverAnimal(id, x, y, dir) {
+    const e = ents.find(n => n.id === id);
+    if (!e) return;
+    e.ox = e.x; e.oy = e.y; e.x = x; e.y = y; e.t = 0; e.dir = dir;
+  }
+
+  function minhaPos() { return eu ? { ...pos(), dir: eu.dir } : null; }
 
   function init() {
     Store.load();
     setupTouch();
     setupPause();
     if (matchMedia('(pointer: coarse)').matches) document.body.classList.add('touch');
-    toTitle();
+    Screens.title(Lobby.handlers);
     requestAnimationFrame(frame);
   }
 
@@ -706,10 +818,15 @@ const Game = (() => {
     get st() { return st; },
     get mode() { return mode; },
     get ents() { return ents; },
+    get mesa() { return mesa; },
     touch(id) { const e = ents.find(n => n.id === id); if (e) interactWith(e); },
   };
 
-  return { init, api, debug };
+  return {
+    init, iniciar, sair, salvar, efeito, novoDia, executar, sincronizar, refresh: refreshEntities,
+    moverOutro, removerOutro, moverAnimal, minhaPos, updateHud, debug,
+    get mesa() { return mesa; },
+  };
 })();
 
 window.addEventListener('DOMContentLoaded', () => Game.init());

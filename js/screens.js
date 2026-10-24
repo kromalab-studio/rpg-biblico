@@ -63,10 +63,13 @@ const Screens = (() => {
   }
 
   function progresso(v) {
-    if (v.av1 && v.av1.concluida) return 'No Princípio — concluída';
-    if (v.av1) return `No Princípio — Dia ${Math.min(7, v.av1.dia)}`;
+    const av = window.AVENTURAS['no-principio'];
+    const st = v.sessoes && v.sessoes[av.id];
+    if (st && !st.concluida) return `${av.titulo} — Dia ${Math.min(7, st.dia)}`;
+    if (v.aventurasConcluidas > 0) return `${av.titulo} — concluída`;
     return 'Pronto para a primeira aventura';
   }
+  const emAndamento = v => { const st = v.sessoes && v.sessoes['no-principio']; return st && !st.concluida; };
 
   // ---------- Tela inicial ----------
   function title(handlers) {
@@ -78,7 +81,7 @@ const Screens = (() => {
         <canvas width="48" height="48" class="v-avatar"></canvas>
         <div class="v-info"><b>${esc(v.nome)}</b><small>${esc(cam.nome)} · Nível ${nv.n} — ${esc(nv.titulo)}</small><small>${esc(progresso(v))}</small></div>
         <div class="v-actions">
-          <button data-act="play">${v.av1 && v.av1.concluida ? 'Rever' : v.av1 ? 'Continuar' : 'Começar'}</button>
+          <button data-act="play">${emAndamento(v) ? 'Continuar' : v.aventurasConcluidas > 0 ? 'Rever' : 'Começar'}</button>
           <button data-act="ficha" class="ghost">Ficha</button>
           <button data-act="del" class="ghost small" aria-label="Apagar Viajante">✕</button>
         </div>
@@ -279,7 +282,7 @@ const Screens = (() => {
       const cam = RULES.camada(v);
       Object.assign(v, {
         luzMax: cam.luz, luz: cam.luz, selos: 0, espigas: 0, espigasColhidas: 0, dizimo: 0, ofertas: 0,
-        aventurasConcluidas: 0, selosLivro: [], decisoes: [], registro: [], av1: null, criadoEm: Date.now(),
+        aventurasConcluidas: 0, selosLivro: [], decisoes: [], registro: [], sessoes: {}, criadoEm: Date.now(),
       });
       if (v.camada !== 'aprendiz' && v.camada !== 'ajudante') {
         RULES.virtudes.forEach(x => { v.virtudes[x.id] = v.virtudes[x.id] || 0; });

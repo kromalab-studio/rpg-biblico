@@ -13,6 +13,26 @@ O jogo é feito em HTML, CSS e JavaScript puros. Não precisa de instalação ne
 
 O progresso é salvo automaticamente no navegador (`localStorage`). Dá para ter vários Viajantes, um por pessoa da família, e todos compartilham o mesmo **Cesto da Comunidade**.
 
+## Jogar online
+
+Cada pessoa joga no próprio aparelho, ao mesmo tempo, com até 6 Viajantes por sala.
+
+1. Na tela inicial, alguém toca em **Criar sala** e escolhe quem será o Mestre:
+   - **O jogo é o Mestre:** quem criou a sala também joga.
+   - **Eu sou o Mestre:** quem criou a sala conduz a história. Avança as falas, ajusta o Número da Prova e dá Selos e Espigas extras pelo **Painel do Mestre**, no menu ☰.
+2. Os outros recebem o **link** ou o **código** e tocam em **Entrar numa sala**. Cada pessoa precisa ter um Viajante criado no próprio aparelho.
+3. Quem criou a sala toca em **Começar a aventura**.
+
+**Como funciona durante a partida:**
+- **Falas:** quando o jogo é o Mestre, cada um lê no seu ritmo e a história continua quando todos terminam. Quando o Mestre é uma pessoa, todos veem as falas e quem avança é o Mestre.
+- **Passos individuais:** escolher a estrela, soltar um animal e rolar a própria Prova acontecem na tela de cada um.
+- **Escolhas do grupo**, como o que plantar no jardim: há 1 minuto de Conselho e depois votação. Se empatar, vota de novo; se empatar outra vez, há sorteio, ou o Mestre decide, se for uma pessoa.
+
+**Limitações desta versão:**
+- A conexão usa o **PeerJS**, e quem criou a sala é o "servidor". Se essa pessoa fechar o jogo ou recarregar a página, a sala acaba. Já quem só entrou pode recarregar e voltar com o mesmo código.
+- O PeerJS usa um servidor público e gratuito para as pessoas se encontrarem. Em algumas redes, principalmente 4G e redes de empresa, a conexão direta entre aparelhos pode falhar.
+- Para usar um servidor próprio, abra o jogo com `?peerhost=endereco:porta`.
+
 ## O que já existe
 
 **Criação do Viajante**, seguindo as quatro idades do manual:
@@ -50,7 +70,7 @@ As falas de Deus ("A Voz") usam uma voz masculina em português, se o aparelho t
 
 ## Publicando uma versão nova
 
-O site no GitHub Pages se atualiza sozinho a cada push no branch publicado. Para o navegador não mostrar a versão antiga guardada em cache, os arquivos em `index.html` têm um número de versão (`?v=7`). A cada publicação, aumente esse número em todos eles: troque `?v=7` por `?v=8` com "localizar e substituir".
+O site no GitHub Pages se atualiza sozinho a cada push no branch publicado. Para o navegador não mostrar a versão antiga guardada em cache, os arquivos em `index.html` têm um número de versão (`?v=8`). A cada publicação, aumente esse número em todos eles: troque `?v=8` por `?v=9` com "localizar e substituir".
 
 ## Estrutura
 
@@ -67,6 +87,7 @@ js/                   código
   roteiro.js          interpretador: lê a aventura de dados/ e conduz 1 ou vários Viajantes
   mesa.js             a mesa (quem joga) e as recompensas; modo solo
   lobby.js            como uma partida começa
+  rede.js             mesa online (PeerJS): salas, convite, sincronização, Conselho e votação
   game.js             motor: mapa, movimento, câmera, entrada, luz
   world.js            o mapa da Criação, que muda a cada dia
   sprites.js          arte em pixel 32x32 (tiles, Viajante, animais)

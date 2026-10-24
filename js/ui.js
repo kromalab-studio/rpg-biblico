@@ -332,8 +332,18 @@ const UI = (() => {
     hush();
   }
 
+  // Fecha só o diálogo (o Mestre avançou a fala para todos).
+  function closeDialog() {
+    if (!dlg) return;
+    const r = dlg.resolve;
+    dlg = null;
+    $('dialog').classList.add('hidden');
+    hush();
+    r();
+  }
+
   return {
-    closeAll,
+    closeAll, closeDialog, modal: openModal,
     get vozes() { return { narrador: ptVoice && ptVoice.name, deus: maleVoice ? maleVoice.name : '(voz padrão, mais grave)' }; },
     testVoices, settings, say, advance, updateDialog, choose, ask, card, prova, toast, banner, speak, hush, esc,
     get busy() { return !!dlg || modalOpen; },

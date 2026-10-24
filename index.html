@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
   <!-- ===== Tela inicial ===== -->
@@ -24,6 +24,15 @@
         <ul id="title-list" class="v-list"></ul>
         <div class="row">
           <button id="btn-new">+ Novo Viajante</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Jogar online</h2>
+        <p class="muted">Cada pessoa joga no seu aparelho, ao mesmo tempo. Quem cria a sala recebe um código para convidar os outros (até 6 Viajantes).</p>
+        <div class="row">
+          <button type="button" id="btn-criar-sala">Criar sala</button>
+          <button type="button" id="btn-entrar-sala" class="ghost">Entrar numa sala</button>
         </div>
       </div>
 
@@ -108,6 +117,33 @@
     </div>
   </section>
 
+  <!-- ===== Sala online ===== -->
+  <section id="sala" class="screen hidden">
+    <div class="screen-inner">
+      <p class="kicker">Jogar online</p>
+      <h1>Sala <span id="sala-codigo" class="codigo"></span></h1>
+      <p id="sala-mestre"></p>
+      <div class="panel" id="sala-anfitriao">
+        <h2>Convide os Viajantes</h2>
+        <p class="muted">Mande o link ou o código. Quem receber abre o jogo e toca em "Entrar numa sala".</p>
+        <input type="text" id="sala-link" readonly>
+        <div class="row">
+          <button type="button" id="sala-copiar" class="ghost">Copiar link</button>
+          <button type="button" id="sala-compartilhar" class="ghost">Compartilhar</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Na sala</h2>
+        <ul id="sala-lista" class="v-list"></ul>
+        <p class="status" id="sala-status"></p>
+      </div>
+      <div class="row end">
+        <button type="button" id="sala-sair" class="ghost">Sair</button>
+        <button type="button" id="sala-comecar" class="anfitriao-only">Começar a aventura</button>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Ficha ===== -->
   <section id="ficha" class="screen hidden">
     <div class="screen-inner">
@@ -146,7 +182,8 @@
           </div>
           <div class="row">
             <button data-act="resume">Continuar</button>
-            <button data-act="ficha" class="ghost">Ver a Ficha</button>
+            <button data-act="ficha" class="ghost" id="pause-ficha">Ver a Ficha</button>
+            <button data-act="mestre" id="pause-mestre" class="hidden">Painel do Mestre</button>
             <button data-act="restart" class="ghost" id="pause-restart">Reiniciar aventura</button>
             <button data-act="title" class="ghost">Salvar e sair</button>
           </div>
@@ -173,19 +210,21 @@
   <div id="toasts"></div>
 
   <!-- Conteúdo editável -->
-  <script src="dados/regras.js?v=7"></script>
-  <script src="dados/aventura1.js?v=7"></script>
-  <script src="dados/viajante.js?v=7"></script>
-  <script src="dados/animais.js?v=7"></script>
+  <script src="dados/regras.js?v=8"></script>
+  <script src="dados/aventura1.js?v=8"></script>
+  <script src="dados/viajante.js?v=8"></script>
+  <script src="dados/animais.js?v=8"></script>
   <!-- Código -->
-  <script src="js/regras.js?v=7"></script>
-  <script src="js/sprites.js?v=7"></script>
-  <script src="js/world.js?v=7"></script>
-  <script src="js/ui.js?v=7"></script>
-  <script src="js/screens.js?v=7"></script>
-  <script src="js/roteiro.js?v=7"></script>
-  <script src="js/mesa.js?v=7"></script>
-  <script src="js/lobby.js?v=7"></script>
-  <script src="js/game.js?v=7"></script>
+  <script src="js/regras.js?v=8"></script>
+  <script src="js/sprites.js?v=8"></script>
+  <script src="js/world.js?v=8"></script>
+  <script src="js/ui.js?v=8"></script>
+  <script src="js/screens.js?v=8"></script>
+  <script src="js/roteiro.js?v=8"></script>
+  <script src="js/mesa.js?v=8"></script>
+  <script src="js/lobby.js?v=8"></script>
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="js/rede.js?v=8"></script>
+  <script src="js/game.js?v=8"></script>
 </body>
 </html>

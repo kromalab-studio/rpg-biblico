@@ -431,3 +431,11 @@ body.touch #stage { width: min(100%, 1040px, calc((100dvh - 200px) * 4 / 3)); }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   #banner, .toast { animation: none !important; opacity: 1; }
 }
+
+/* ---------- Sala online ---------- */
+.codigo { color: var(--accent); letter-spacing: 4px; background: var(--paper); border: var(--line); border-radius: 6px; padding: 0 12px; box-shadow: var(--pop-sm); }
+#sala-comecar { background: var(--teal); color: #fff; }
+#sala-comecar:disabled { background: var(--paper2); color: var(--muted); }
+.opt.chip-on { background: var(--teal); color: #fff; }
+.opt.chip-on small { color: #e6f4f1; }
+.vt-n { color: var(--accent) !important; font-weight: 800; }

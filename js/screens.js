@@ -99,6 +99,8 @@ const Screens = (() => {
       };
     });
     $('btn-new').onclick = () => creation(handlers);
+    $('btn-criar-sala').onclick = () => Rede.fluxoCriar();
+    $('btn-entrar-sala').onclick = () => Rede.fluxoEntrar();
     $('opt-narrar').onchange = e => { UI.settings.narrar = e.target.checked; Store.save(); };
     $('btn-voz-teste').onclick = () => {
       if (!UI.testVoices()) { $('voz-info').textContent = 'Este navegador não tem leitura em voz alta.'; return; }

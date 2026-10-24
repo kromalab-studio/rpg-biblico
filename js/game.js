@@ -30,7 +30,9 @@ const Game = (() => {
   let bumpCooldown = 0;
   let onMove = null;      // avisado quando eu mudo de casa (para a rede)
 
-  const minhaV = () => mesa.jogadores.find(j => j.id === me).v;
+  // O Mestre humano não tem Viajante: vê o mapa e conduz (mesa.espectador).
+  const MESTRE_V = { nome: 'Mestre', luz: 0, luzMax: 0, espigas: 0, selos: 0, camada: 'mensageiro', aparencia: {} };
+  const minhaV = () => (mesa.espectador ? MESTRE_V : mesa.jogadores.find(j => j.id === me).v);
 
   // ---------- Salvamento ----------
   function salvar() {
@@ -206,7 +208,7 @@ const Game = (() => {
     const nx = eu.x + dx, ny = eu.y + dy;
     const e = entAt(nx, ny);
     if (e) {
-      if (bumpCooldown <= 0 && e.def.onTouch) { bumpCooldown = 0.6; interactWith(e); }
+      if (bumpCooldown <= 0 && e.def.onTouch && !mesa.espectador) { bumpCooldown = 0.6; interactWith(e); }
       path = [];
       if (onMove) onMove({ x: eu.x, y: eu.y, dir });
       return false;
@@ -229,6 +231,7 @@ const Game = (() => {
   }
 
   function interact() {
+    if (mesa.espectador) return;
     const f = facing();
     const e = ents.find(n => n.x === f.x && n.y === f.y);
     if (e) return interactWith(e);
@@ -447,6 +450,12 @@ const Game = (() => {
       ${mesa.modo === 'online' ? `<span>Sala</span><b>${UI.esc(mesa.codigo || '')}</b>` : ''}`;
     $('opt-narrar-2').checked = UI.settings.narrar;
     $('pause-restart').classList.toggle('hidden', !mesa.reiniciar);
+    $('pause-mestre').classList.toggle('hidden', !mesa.painelMestre);
+    $('pause-ficha').classList.toggle('hidden', !!mesa.espectador);
+    if (mesa.espectador) {
+      $('pause-stats').innerHTML = `<span>Você é</span><b>o Mestre</b><span>Sala</span><b>${UI.esc(mesa.codigo || '')}</b>`
+        + mesa.jogadores.map(j => `<span>${UI.esc(j.v.nome)}</span><b>🌾 ${j.v.espigas} · ⭐ ${j.v.selos}</b>`).join('');
+    }
     $('pause').classList.remove('hidden');
   }
 
@@ -463,7 +472,8 @@ const Game = (() => {
         $('pause').classList.add('hidden');
         salvar();
         Screens.ficha(minhaV(), () => { Screens.hideAll(); openPause(); });
-      } else if (act === 'title') { closePause(); salvar(); sair(true); }
+      } else if (act === 'mestre') { closePause(); if (mesa.painelMestre) mesa.painelMestre(); }
+      else if (act === 'title') { closePause(); salvar(); sair(true); }
       else if (act === 'restart') {
         const ok = await UI.card({
           title: 'Reiniciar a aventura?',
@@ -487,7 +497,9 @@ const Game = (() => {
     const v = minhaV();
     const hearts = '♥'.repeat(v.luz) + '♡'.repeat(Math.max(0, v.luzMax - v.luz));
     const online = mesa.modo === 'online' ? ` <span class="net ${mesa.conectado === false ? 'off' : ''}">● ${mesa.jogadores.length}</span>` : '';
-    const html = `<b>${UI.esc(v.nome)}</b> <span class="hp">${hearts}</span>${online}<br><span>🌾 ${v.espigas}</span> &nbsp; <span>⭐ ${v.selos}</span>`;
+    const html = mesa.espectador
+      ? `<b>Mestre</b>${online}<br><span>Sala ${UI.esc(mesa.codigo || '')}</span>`
+      : `<b>${UI.esc(v.nome)}</b> <span class="hp">${hearts}</span>${online}<br><span>🌾 ${v.espigas}</span> &nbsp; <span>⭐ ${v.selos}</span>`;
     const goal = `<b>Dia ${Math.min(st.dia, 7)}</b> · ${UI.esc(Roteiro.objetivo(mesa))}`;
     const key = html + goal;
     if (key === hudCache) return;
@@ -502,8 +514,17 @@ const Game = (() => {
     return { x: eu.x * T, y: eu.y * T };
   }
 
+  // O Mestre (espectador) acompanha o primeiro Viajante da mesa.
+  function focoCamera() {
+    if (mesa && mesa.espectador) {
+      const o = Object.values(outros)[0];
+      if (o) return { x: (o.ox + (o.x - o.ox) * o.t) * T, y: (o.oy + (o.y - o.oy) * o.t) * T };
+    }
+    return playerPixel();
+  }
+
   function camera() {
-    const pp = playerPixel();
+    const pp = focoCamera();
     const cx = Math.max(0, Math.min(World.W * T - VIEW_W, pp.x + T / 2 - VIEW_W / 2));
     const cy = Math.max(0, Math.min(World.H * T - VIEW_H, pp.y + T / 2 - VIEW_H / 2));
     return { x: Math.round(cx), y: Math.round(cy) };
@@ -571,7 +592,7 @@ const Game = (() => {
     }
     const pp = playerPixel();
     const v = minhaV();
-    list.push({
+    if (!mesa.espectador) list.push({
       y: pp.y / T,
       draw: () => {
         Art.entity(ctx, { kind: 'person', ...v.aparencia }, pp.x - cam.x, pp.y - cam.y, eu.dir, mov ? (stepFlip ? 1 : 2) * (mov.t < 0.5 ? 1 : 0) : 0, time);
@@ -698,7 +719,7 @@ const Game = (() => {
       mov.t += dt * SPEED;
       if (mov.t >= 1) finishMove();
     }
-    if (!mov && mode === 'world' && !UI.busy) {
+    if (!mov && mode === 'world' && !UI.busy && !mesa.espectador) {
       if (held.length) tryMove(held[held.length - 1]);
       else if (path.length || pathFace) followPath();
     }
@@ -816,6 +837,7 @@ const Game = (() => {
     setupPause();
     if (matchMedia('(pointer: coarse)').matches) document.body.classList.add('touch');
     Screens.title(Lobby.handlers);
+    Rede.verConvite();
     requestAnimationFrame(frame);
   }
 

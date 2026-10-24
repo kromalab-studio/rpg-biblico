@@ -50,7 +50,7 @@ As falas de Deus ("A Voz") usam uma voz masculina em português, se o aparelho t
 
 ## Publicando uma versão nova
 
-O site no GitHub Pages se atualiza sozinho a cada push no branch publicado. Para o navegador não mostrar a versão antiga guardada em cache, os arquivos em `index.html` têm um número de versão (`?v=3`). A cada publicação, aumente esse número em todos eles: troque `?v=3` por `?v=4` com "localizar e substituir".
+O site no GitHub Pages se atualiza sozinho a cada push no branch publicado. Para o navegador não mostrar a versão antiga guardada em cache, os arquivos em `index.html` têm um número de versão (`?v=4`). A cada publicação, aumente esse número em todos eles: troque `?v=4` por `?v=5` com "localizar e substituir".
 
 ## Estrutura
 

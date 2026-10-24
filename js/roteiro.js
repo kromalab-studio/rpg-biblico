@@ -49,6 +49,7 @@ const Roteiro = (() => {
       else if (key === 'nomes') out = nomes(mesa);
       else if (key === 'voz') out = voz === 'A Voz' ? 'a Voz' : 'Deus';
       else if (key === 'Voz') out = voz;
+      else if (key === 'naVoz') out = voz === 'A Voz' ? 'na Voz' : 'em Deus';
       else if (key in extra) out = extra[key];
       else {
         const [kind, id] = key.split('.');

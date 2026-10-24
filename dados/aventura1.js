@@ -9,6 +9,7 @@
 // Marcadores que o jogo troca sozinho:
 //   {nome}  nome do Viajante        {nomes}  nomes de todos os Viajantes da mesa
 //   {voz}   "a Voz" ou "Deus"        {Voz}    "A Voz" ou "Deus" (início de frase)
+//   {naVoz} "na Voz" ou "em Deus"
 //   {resp.ID}   o que o Viajante respondeu na escolha/pergunta ID
 //   {virtude.ID}  nome da Virtude da opção escolhida em ID
 //
@@ -157,7 +158,7 @@ window.AVENTURAS['no-principio'] = {
           titulo: 'Passo 1 — A Luz',
           texto: 'O que você faz para ajudar a abrir as cortinas do céu?',
           opcoes: [
-            { valor: 'fe', rotulo: 'Estender as mãos e confiar', desc: 'Mesmo sem ver nada, você confia em {voz}.', virtude: 'fe', tags: ['confiar'] },
+            { valor: 'fe', rotulo: 'Estender as mãos e confiar', desc: 'Mesmo sem ver nada, você confia {naVoz}.', virtude: 'fe', tags: ['confiar'] },
             { valor: 'coragem', rotulo: 'Puxar as cortinas com força', desc: 'Mesmo com um pouquinho de medo do escuro.', virtude: 'coragem' },
             { valor: 'humildade', rotulo: 'Esperar e ouvir com atenção', desc: 'Você deixa {voz} guiar o seu jeito.', virtude: 'humildade' },
           ],

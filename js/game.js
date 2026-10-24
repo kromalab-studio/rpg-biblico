@@ -1,7 +1,9 @@
 // Motor: laço principal, mapa, movimento, câmera, entrada e iluminação.
 // O conteúdo vem de dados/ e é conduzido por js/roteiro.js por meio de uma mesa (js/mesa.js).
 const Game = (() => {
-  const T = Art.T, VW = 20, VH = 15, SPEED = 4.5;
+  // ZOOM: quanto a câmera aproxima o mapa. A tela mostra (20 x 15) / ZOOM casas.
+  const T = Art.T, VW = 20, VH = 15, SPEED = 4.5, ZOOM = 2;
+  const VIEW_W = VW * T / ZOOM, VIEW_H = VH * T / ZOOM; // área do mapa visível, em pixels do mapa
   const canvas = document.getElementById('screen');
   const ctx = canvas.getContext('2d');
   canvas.width = VW * T;
@@ -421,7 +423,7 @@ const Game = (() => {
       const sx = (e.clientX - rect.left) / rect.width * canvas.width;
       const sy = (e.clientY - rect.top) / rect.height * canvas.height;
       const cam = camera();
-      const tx = Math.floor((sx + cam.x) / T), ty = Math.floor((sy + cam.y) / T);
+      const tx = Math.floor((sx / ZOOM + cam.x) / T), ty = Math.floor((sy / ZOOM + cam.y) / T);
       const p = pos();
       if (tx === p.x && ty === p.y) return;
       const res = findPath(tx, ty);
@@ -502,8 +504,8 @@ const Game = (() => {
 
   function camera() {
     const pp = playerPixel();
-    const cx = Math.max(0, Math.min(World.W * T - VW * T, pp.x + T / 2 - VW * T / 2));
-    const cy = Math.max(0, Math.min(World.H * T - VH * T, pp.y + T / 2 - VH * T / 2));
+    const cx = Math.max(0, Math.min(World.W * T - VIEW_W, pp.x + T / 2 - VIEW_W / 2));
+    const cy = Math.max(0, Math.min(World.H * T - VIEW_H, pp.y + T / 2 - VIEW_H / 2));
     return { x: Math.round(cx), y: Math.round(cy) };
   }
 
@@ -514,9 +516,11 @@ const Game = (() => {
       return;
     }
     const cam = camera();
+    ctx.save();
+    ctx.scale(ZOOM, ZOOM);
     const x0 = Math.floor(cam.x / T), y0 = Math.floor(cam.y / T);
-    for (let y = y0; y <= y0 + VH; y++) {
-      for (let x = x0; x <= x0 + VW; x++) {
+    for (let y = y0; y <= y0 + Math.ceil(VIEW_H / T); y++) {
+      for (let x = x0; x <= x0 + Math.ceil(VIEW_W / T); x++) {
         if (x >= World.W || y >= World.H) continue;
         const ch = shownTile(x, y);
         ctx.drawImage(Art.tile(ch, x, y, time), x * T - cam.x, y * T - cam.y);
@@ -540,7 +544,7 @@ const Game = (() => {
       if (s < 0.4) continue;
       const hop = (s - 0.4) / 0.6;
       const fx2 = f.x * T - cam.x, fy2 = f.y * T - cam.y - hop * 12;
-      if (fx2 < -T || fy2 < -T || fx2 > VW * T || fy2 > VH * T) continue;
+      if (fx2 < -T || fy2 < -T || fx2 > VIEW_W || fy2 > VIEW_H) continue;
       Art.entity(ctx, { kind: f.kind }, fx2, fy2, Math.sin(f.phase) > 0 ? 'right' : 'left', 0, time, 0.6);
     }
 
@@ -579,11 +583,12 @@ const Game = (() => {
     // Aves voando por cima
     for (const b of birds) {
       const bx = b.x - cam.x, by = b.y - cam.y;
-      if (bx < -T || by < -T || bx > VW * T || by > VH * T) continue;
+      if (bx < -T || by < -T || bx > VIEW_W || by > VIEW_H) continue;
       ctx.fillStyle = 'rgba(0,0,0,0.15)';
       ctx.fillRect(Math.round(bx + 8), Math.round(by + 44), 12, 4);
       Art.entity(ctx, { kind: b.kind }, bx, by, b.vx > 0 ? 'right' : 'left', Math.sin(time * 10 + b.x) > 0 ? 1 : 0, time, 0.75);
     }
+    ctx.restore();
 
     drawLight(pp, cam);
   }
@@ -628,8 +633,8 @@ const Game = (() => {
       ctx.fillRect(0, 0, W, H);
     }
     if (fx.dark > 0.01) {
-      const cx = pp.x - cam.x + T / 2, cy = pp.y - cam.y + T / 2;
-      const grd = ctx.createRadialGradient(cx, cy, 20, cx, cy, 140);
+      const cx = (pp.x - cam.x + T / 2) * ZOOM, cy = (pp.y - cam.y + T / 2) * ZOOM;
+      const grd = ctx.createRadialGradient(cx, cy, 24, cx, cy, 190);
       grd.addColorStop(0, `rgba(4,4,12,${0.35 * fx.dark})`);
       grd.addColorStop(1, `rgba(4,4,12,${0.97 * fx.dark})`);
       ctx.fillStyle = grd;
@@ -638,6 +643,7 @@ const Game = (() => {
         if (e.def.kind !== 'sparkle') continue;
         ctx.save();
         ctx.globalAlpha = fx.dark;
+        ctx.scale(ZOOM, ZOOM);
         Art.sparkle(ctx, e.x * T - cam.x, e.y * T - cam.y, time);
         ctx.restore();
       }

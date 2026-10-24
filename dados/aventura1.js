@@ -49,9 +49,9 @@ window.AVENTURAS['no-principio'] = {
 
   // Pontos do mapa (colunas x linhas). O mapa da Criação é desenhado por js/world.js.
   mapa: {
-    inicio: { x: 15, y: 13 },
+    inicio: { x: 15, y: 12 },
     pontos: {
-      luz: { x: 15, y: 9 },
+      luz: { x: 15, y: 10 },
       aguas: { x: 18, y: 11 },
       terra: { x: 13, y: 10 },
       jardim: { x: 11, y: 13 },

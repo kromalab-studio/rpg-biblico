@@ -1,6 +1,6 @@
 // Motor: laço principal, movimento, câmera, entrada, iluminação e ponte com o roteiro da aventura.
 const Game = (() => {
-  const T = 16, VW = 20, VH = 15, SPEED = 4.5;
+  const T = Art.T, VW = 20, VH = 15, SPEED = 4.5;
   const canvas = document.getElementById('screen');
   const ctx = canvas.getContext('2d');
   canvas.width = VW * T;
@@ -63,6 +63,11 @@ const Game = (() => {
       if (d > reveal.t) return prevTiles[y][x];
     }
     return tiles[y][x];
+  }
+
+  function shownTileSafe(x, y) {
+    if (x < 0 || y < 0 || x >= World.W || y >= World.H) return null;
+    return shownTile(x, y);
   }
 
   function refreshEntities() {
@@ -430,7 +435,9 @@ const Game = (() => {
     for (let y = y0; y <= y0 + VH; y++) {
       for (let x = x0; x <= x0 + VW; x++) {
         if (x >= World.W || y >= World.H) continue;
-        ctx.drawImage(Art.tile(shownTile(x, y), x, y, time), x * T - cam.x, y * T - cam.y);
+        const ch = shownTile(x, y);
+        ctx.drawImage(Art.tile(ch, x, y, time), x * T - cam.x, y * T - cam.y);
+        Art.edges(ctx, ch, x, y, x * T - cam.x, y * T - cam.y, shownTileSafe, time);
       }
     }
 
@@ -438,9 +445,9 @@ const Game = (() => {
     if (!st.c.terra) {
       for (let i = 0; i < 18; i++) {
         const px = (i * 53 + time * (8 + i % 4)) % (World.W * T);
-        const py = (i * 97 % (World.H * T)) + Math.sin(time + i) * 6;
+        const py = (i * 97 % (World.H * T)) + Math.sin(time + i) * 12;
         ctx.fillStyle = `rgba(220,230,255,${0.25 + 0.2 * Math.sin(time * 2 + i)})`;
-        ctx.fillRect(Math.round(px - cam.x), Math.round(py - cam.y), 2, 1);
+        ctx.fillRect(Math.round(px - cam.x), Math.round(py - cam.y), 4, 2);
       }
     }
 
@@ -449,7 +456,7 @@ const Game = (() => {
       const s = Math.sin(time * 1.4 + f.phase);
       if (s < 0.4) continue;
       const hop = (s - 0.4) / 0.6;
-      const fx2 = f.x * T - cam.x, fy2 = f.y * T - cam.y - hop * 6;
+      const fx2 = f.x * T - cam.x, fy2 = f.y * T - cam.y - hop * 12;
       if (fx2 < -T || fy2 < -T || fx2 > VW * T || fy2 > VH * T) continue;
       Art.entity(ctx, { kind: f.kind }, fx2, fy2, Math.sin(f.phase) > 0 ? 'right' : 'left', 0, time, 0.6);
     }
@@ -461,8 +468,8 @@ const Game = (() => {
         const ey = (e.oy + (e.y - e.oy) * e.t) * T - cam.y;
         if (e.def.kind === 'sparkle') Art.sparkle(ctx, ex, ey, time);
         else Art.entity(ctx, e.def, ex, ey, e.dir, e.t < 1 ? (stepFlip ? 1 : 2) : 0, time);
-        if (e.def.label) Art.label(ctx, e.def.label, ex + 8, ey - 1);
-        else if (e.def.marker) Art.label(ctx, '?', ex + 8, ey - 1 + Math.sin(time * 4) * 1.5);
+        if (e.def.label) Art.label(ctx, e.def.label, ex + T / 2, ey - 1);
+        else if (e.def.marker) Art.label(ctx, '?', ex + T / 2, ey - 1 + Math.sin(time * 4) * 3, '#ffe7a3');
       },
     }));
     const pp = playerPixel();
@@ -477,7 +484,7 @@ const Game = (() => {
       const bx = b.x - cam.x, by = b.y - cam.y;
       if (bx < -T || by < -T || bx > VW * T || by > VH * T) continue;
       ctx.fillStyle = 'rgba(0,0,0,0.15)';
-      ctx.fillRect(Math.round(bx + 4), Math.round(by + 22), 6, 2);
+      ctx.fillRect(Math.round(bx + 8), Math.round(by + 44), 12, 4);
       Art.entity(ctx, { kind: b.kind }, bx, by, b.vx > 0 ? 'right' : 'left', Math.sin(time * 10 + b.x) > 0 ? 1 : 0, time, 0.75);
     }
 
@@ -490,10 +497,10 @@ const Game = (() => {
       ctx.fillStyle = `rgba(190,200,220,${0.42 * fx.fog})`;
       ctx.fillRect(0, 0, W, H);
       for (let i = 0; i < 8; i++) {
-        const x = ((i * 70 + time * 7) % (W + 120)) - 60;
+        const x = ((i * 140 + time * 14) % (W + 240)) - 120;
         ctx.fillStyle = `rgba(230,236,245,${0.18 * fx.fog})`;
         ctx.beginPath();
-        ctx.ellipse(x, (i * 41) % H, 50, 14, 0, 0, Math.PI * 2);
+        ctx.ellipse(x, (i * 83) % H, 100, 28, 0, 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -501,18 +508,19 @@ const Game = (() => {
       ctx.fillStyle = `rgba(12,18,56,${0.62 * fx.night})`;
       ctx.fillRect(0, 0, W, H);
       const R = Art.rng(7);
-      for (let i = 0; i < 70; i++) {
+      for (let i = 0; i < 140; i++) {
         const sx = R() * W, sy = R() * H, tw = 0.5 + 0.5 * Math.sin(time * 3 + i);
         ctx.fillStyle = `rgba(255,250,220,${fx.night * (0.4 + 0.6 * tw)})`;
-        ctx.fillRect(Math.round(sx), Math.round(sy), i % 9 === 0 ? 2 : 1, i % 9 === 0 ? 2 : 1);
+        const sz = i % 9 === 0 ? 3 : i % 3 === 0 ? 2 : 1;
+        ctx.fillRect(Math.round(sx), Math.round(sy), sz, sz);
       }
       ctx.fillStyle = `rgba(250,246,225,${fx.night})`;
       ctx.beginPath();
-      ctx.arc(W - 40, 34, 10, 0, Math.PI * 2);
+      ctx.arc(W - 80, 68, 20, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = `rgba(12,18,56,${fx.night})`;
       ctx.beginPath();
-      ctx.arc(W - 35, 31, 9, 0, Math.PI * 2);
+      ctx.arc(W - 70, 62, 18, 0, Math.PI * 2);
       ctx.fill();
     }
     if (fx.gold > 0.01) {
@@ -520,8 +528,8 @@ const Game = (() => {
       ctx.fillRect(0, 0, W, H);
     }
     if (fx.dark > 0.01) {
-      const cx = pp.x - cam.x + 8, cy = pp.y - cam.y + 8;
-      const grd = ctx.createRadialGradient(cx, cy, 10, cx, cy, 70);
+      const cx = pp.x - cam.x + T / 2, cy = pp.y - cam.y + T / 2;
+      const grd = ctx.createRadialGradient(cx, cy, 20, cx, cy, 140);
       grd.addColorStop(0, `rgba(4,4,12,${0.35 * fx.dark})`);
       grd.addColorStop(1, `rgba(4,4,12,${0.97 * fx.dark})`);
       ctx.fillStyle = grd;
@@ -552,7 +560,7 @@ const Game = (() => {
       ctx.fillRect(Math.round(sx), Math.round(sy), 1, 1);
     }
     const sunY = H * 0.78;
-    const sg = ctx.createRadialGradient(W / 2, sunY, 4, W / 2, sunY, 90);
+    const sg = ctx.createRadialGradient(W / 2, sunY, 8, W / 2, sunY, 180);
     sg.addColorStop(0, 'rgba(255,240,190,0.95)');
     sg.addColorStop(1, 'rgba(255,200,120,0)');
     ctx.fillStyle = sg;

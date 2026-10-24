@@ -1,0 +1,69 @@
+# A Grande Jornada — RPG Bíblico (versão web)
+
+Versão para navegador de **A Grande Jornada**, o RPG de mesa para a família percorrer a Bíblia, uma história de cada vez. Este jogo segue o *Guia do Jogador*, o *Guia do Mestre*, as *Fichas de Personagem* e a *Aventura 1 — No Princípio* (manual provisório v2).
+
+O jogo é feito em HTML, CSS e JavaScript puros. Não precisa de instalação nem de build, e toda a arte em pixel é desenhada por código.
+
+## Como jogar
+
+- Abra `index.html` no navegador. Para servir localmente, rode `python3 -m http.server` e acesse `http://localhost:8000`.
+- **Andar:** setas, WASD ou tocar no mapa.
+- **Falar / interagir:** Espaço, Enter, Z ou o botão **A**.
+- **Menu:** Esc, X ou o botão ☰.
+
+O progresso é salvo automaticamente no navegador (`localStorage`). Dá para ter vários Viajantes, um por pessoa da família, e todos compartilham o mesmo **Cesto da Comunidade**.
+
+## O que já existe
+
+**Criação do Viajante**, seguindo as quatro idades do manual:
+
+| Idade | Viajante | Dado | Virtudes | Pontos de Luz |
+|---|---|---|---|---|
+| 5–7 | Pequeno Ajudante | Dado da Luz (☀️ 🌱 ☁️) | 1 favorita | 3 |
+| 8–10 | Jovem Aprendiz | d6 | 2 (+1 cada) | 4 |
+| 11–13 | Guardião | d8 | +3, +2, +1, +1 | 5 |
+| 14+ | Mensageiro | d20 | 8 pontos (máx. +3) | 6 |
+
+A criação também tem nome, aparência, Antecedente, os Quatro Cantos do Coração e a Pergunta de Jornada, cada um liberado na idade indicada pelo manual.
+
+**Aventura 1 — No Princípio** (Gênesis 1 e 2). São sete passos, um por dia da Criação, e o mapa muda a cada dia:
+
+1. **A Luz:** o mundo começa no escuro. Prova sem falha ("você tentou com o coração, e isso bastou").
+2. **O Céu e as Águas:** escolha entre pintar o céu ou juntar o mar.
+3. **A Terra e as Plantas:** a terra seca sobe e você planta o primeiro jardim (Prova de Bondade).
+4. **O Sol, a Lua e as Estrelas:** escolha e descreva a sua estrela favorita.
+5. **Os Peixes e as Aves:** solte e descreva um animal.
+6. **Os Animais e as Pessoas:** dê nome aos animais e ouça: "Também fiz você."
+7. **O Descanso:** "E era muito bom". Depois vêm o primeiro dízimo, a oferta voluntária, a Reflexão Final e o ritual de encerramento.
+
+**Regras implementadas:**
+- **Provas:** o dado da idade mais a Virtude e o Antecedente, contra o Número da Prova.
+- **Espigas:** dá para gastar 2 para tentar uma Prova de novo.
+- **Dízimo:** escalonado por idade, com o Cesto da Comunidade.
+- **Selos de Virtude:** aparecem como "Estrelas" para os pequenos.
+- **Trilha de níveis**, **Ficha do Viajante** e **"A Voz" ou "Deus"** conforme a idade.
+- **Para 11+ e 14+:** conversa sobre a imagem de Deus e o Dilema.
+
+**Acessibilidade:** a narração em voz alta (pt-BR, via Web Speech API) pode ser ligada na tela inicial ou na pausa. Ela ajuda quem ainda não lê.
+
+## Estrutura
+
+```
+index.html          telas, palco do jogo e modais
+css/style.css       visual
+js/data.js          regras: Virtudes, idades, Antecedentes, níveis, Números da Prova
+js/sprites.js       arte em pixel (tiles, Viajante, animais, luz)
+js/world.js         mapa da Criação, que muda a cada dia
+js/ui.js            diálogo, escolhas, perguntas, Prova com dado, narração
+js/screens.js       salvamento, tela inicial, criação do Viajante, Ficha
+js/aventura1.js     roteiro da Aventura 1 — No Princípio
+js/game.js          motor: movimento, câmera, entrada, iluminação, cenas
+```
+
+Para criar uma nova aventura, faça um arquivo como `aventura1.js`, com as funções `entities`, `objective`, `intro`, `startDay`, `ending` etc. Os passos são funções `async` que usam `say`, `choose`, `ask`, `prova`, `espigas` e `selo`.
+
+## Decisões a confirmar
+
+- **Números da Prova para d6 e d8.** O manual dá os valores do d20 (8 / 13 / 18). Para os outros dados usei um ajuste proporcional: d6 = 2 / 3 / 4 e d8 = 3 / 5 / 7.
+- **Trilha de níveis.** A tabela do Guia diz "+2 aventuras / 4 Selos" para o Nível 2, mas as fichas dizem que "5 Selos destravam o próximo nível". Implementei a tabela do Guia, somando os acréscimos de aventuras. Os valores estão em `js/data.js` e são fáceis de ajustar.
+- **Um Viajante por vez.** O jogo tem um Viajante por partida. Numa mesa com várias pessoas, cada uma cria o seu Viajante e joga a sua vez.

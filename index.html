@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>A Grande Jornada — RPG Bíblico</title>
+  <meta name="description" content="A Grande Jornada: um RPG bíblico para a família jogar no navegador. Crie o seu Viajante e caminhe pela Bíblia, começando pela Criação.">
+  <meta name="theme-color" content="#15110c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== Tela inicial ===== -->
+  <section id="title" class="screen hidden">
+    <div class="screen-inner">
+      <p class="kicker">RPG Bíblico para a família</p>
+      <h1 class="logo">A Grande Jornada</h1>
+      <p class="verse">“Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.” <small>— Salmo 119:105</small></p>
+
+      <div class="panel">
+        <h2>Viajantes</h2>
+        <ul id="title-list" class="v-list"></ul>
+        <div class="row">
+          <button id="btn-new">+ Novo Viajante</button>
+        </div>
+      </div>
+
+      <div class="panel slim">
+        <label class="toggle"><input type="checkbox" id="opt-narrar"> Narrar os textos em voz alta (bom para quem ainda não lê)</label>
+        <p class="muted">🧺 Cesto da Comunidade, de todos os Viajantes: <b id="title-cesto">0</b> Espigas</p>
+      </div>
+
+      <details class="panel slim how">
+        <summary>Como se joga</summary>
+        <p>Cada jogador cria um <b>Viajante</b>: alguém com nome próprio que caminha pelas histórias da Bíblia e ajuda. Os personagens bíblicos continuam sendo eles mesmos.</p>
+        <p>Quando o resultado de uma ação é incerto, acontece uma <b>Prova</b>: você rola o dado da sua idade e soma a sua Virtude. Falhar faz parte da história — ninguém perde.</p>
+        <p>Ao trabalhar e ajudar, você colhe <b>Espigas</b> 🌾 (e devolve o dízimo ao Cesto). Ao agir bem, ganha <b>Selos de Virtude</b> ⭐, que fazem o Viajante subir de nível.</p>
+        <p>Jogue junto com a família: no fim de cada aventura há perguntas para conversar fora do jogo.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== Criação do Viajante ===== -->
+  <section id="creation" class="screen hidden">
+    <div class="screen-inner">
+      <p class="kicker">Novo Viajante</p>
+      <h1>Crie o seu Viajante</h1>
+
+      <div class="panel">
+        <h2>1. A sua idade</h2>
+        <p class="muted">O jogo cresce com você: cada idade tem o seu dado e as suas regras.</p>
+        <div id="cr-camadas" class="grid-4"></div>
+      </div>
+
+      <div class="panel">
+        <h2>2. O nome e a aparência</h2>
+        <div class="cr-look">
+          <div class="cr-preview-box">
+            <canvas id="cr-preview" width="96" height="96"></canvas>
+            <button type="button" id="cr-turn" class="ghost small">↻ Girar</button>
+          </div>
+          <div class="cr-fields">
+            <label>Nome do Viajante <input type="text" id="cr-name" maxlength="20" placeholder="Pode ser inventado ou ter um som bíblico" autocomplete="off"></label>
+            <div class="sw-row"><span>Túnica</span><div id="cr-robe"></div></div>
+            <div class="sw-row"><span>Cabelo</span><div id="cr-hair"></div></div>
+            <div class="sw-row"><span>Pele</span><div id="cr-skin"></div></div>
+            <div class="row">
+              <label class="toggle"><input type="checkbox" id="cr-long"> Cabelo comprido</label>
+              <label class="toggle"><input type="checkbox" id="cr-lenco"> Lenço na cabeça</label>
+            </div>
+            <label>Como ele é? (opcional) <input type="text" id="cr-desc" maxlength="120" placeholder="Ex.: tem um sorriso grande e anda descalço"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>3. As Virtudes</h2>
+        <p class="muted" id="cr-virt-rule"></p>
+        <div id="cr-virtudes" class="virt-grid"></div>
+        <p class="status" id="cr-virt-status"></p>
+      </div>
+
+      <div class="panel" id="cr-sec-antecedente">
+        <h2>4. O Antecedente — de onde você vem</h2>
+        <p class="muted" id="cr-ant-rule"></p>
+        <div id="cr-antecedentes" class="grid-3"></div>
+      </div>
+
+      <div class="panel" id="cr-sec-cantos">
+        <h2>5. Os Quatro Cantos do Coração</h2>
+        <p class="muted">Para dar alma ao seu Viajante. Tudo opcional.</p>
+        <label>Traço — como ele age <input type="text" id="cr-traco" maxlength="80"></label>
+        <label>Ideal — no que ele acredita <input type="text" id="cr-ideal" maxlength="80"></label>
+        <label id="cr-row-vinculo">Vínculo — o que ele ama e protege <input type="text" id="cr-vinculo" maxlength="80"></label>
+        <label id="cr-row-defeito">Defeito — a fraqueza a vencer <input type="text" id="cr-defeito" maxlength="80"></label>
+      </div>
+
+      <div class="panel" id="cr-sec-pergunta">
+        <h2>6. A Pergunta de Jornada</h2>
+        <p class="muted">A pergunta que o seu Viajante carrega no coração, de Gênesis ao fim. Pode escolher agora ou no fim da primeira aventura.</p>
+        <div id="cr-perguntas" class="m-sug"></div>
+        <input type="text" id="cr-pergunta" maxlength="120" placeholder="Ou escreva a sua">
+      </div>
+
+      <p class="error" id="cr-error"></p>
+      <div class="row end">
+        <button type="button" id="cr-back" class="ghost">Voltar</button>
+        <button type="button" id="cr-start">Começar a Jornada</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Ficha ===== -->
+  <section id="ficha" class="screen hidden">
+    <div class="screen-inner">
+      <div class="panel ficha" id="ficha-body"></div>
+      <div class="row end"><button type="button" id="ficha-back">Voltar</button></div>
+    </div>
+  </section>
+
+  <!-- ===== Jogo ===== -->
+  <div id="stage-wrap">
+    <div id="stage">
+      <canvas id="screen"></canvas>
+
+      <div id="hud" class="hidden">
+        <div id="hud-stats"></div>
+        <div id="hud-goal"></div>
+      </div>
+
+      <div id="dialog" class="hidden">
+        <div id="dialog-name"></div>
+        <div id="dialog-text"></div>
+        <div id="dialog-next">▼</div>
+      </div>
+
+      <div id="banner" class="hidden"></div>
+
+      <div id="pause" class="overlay hidden">
+        <div class="panel">
+          <h2>Pausa</h2>
+          <div id="pause-stats"></div>
+          <label class="toggle"><input type="checkbox" id="opt-narrar-2"> Narrar os textos em voz alta</label>
+          <div class="help">
+            <p><b>Andar:</b> setas, WASD ou toque no mapa</p>
+            <p><b>Falar / interagir:</b> Espaço, Enter, Z ou botão A</p>
+            <p><b>Menu:</b> Esc ou X</p>
+          </div>
+          <div class="row">
+            <button data-act="resume">Continuar</button>
+            <button data-act="ficha" class="ghost">Ver a Ficha</button>
+            <button data-act="title" class="ghost">Salvar e sair</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="touch">
+      <div class="dpad">
+        <button data-key="up" class="up" aria-label="Cima">▲</button>
+        <button data-key="left" class="left" aria-label="Esquerda">◀</button>
+        <button data-key="right" class="right" aria-label="Direita">▶</button>
+        <button data-key="down" class="down" aria-label="Baixo">▼</button>
+      </div>
+      <div class="ab">
+        <button data-key="b" class="b" aria-label="Menu">☰</button>
+        <button data-key="a" class="a" aria-label="Ação">A</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modais e avisos ===== -->
+  <div id="modal" class="hidden"><div id="modal-card" role="dialog" aria-modal="true"></div></div>
+  <div id="toasts"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/screens.js"></script>
+  <script src="js/aventura1.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

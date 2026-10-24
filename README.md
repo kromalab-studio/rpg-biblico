@@ -48,6 +48,10 @@ A criação também tem nome, aparência, Antecedente, os Quatro Cantos do Cora�
 
 As falas de Deus ("A Voz") usam uma voz masculina em português, se o aparelho tiver uma. Se não tiver, usam a voz padrão com tom mais grave e mais lento. As vozes disponíveis variam de aparelho para aparelho, e o botão **▶ Testar vozes** na tela inicial mostra quais foram escolhidas. Os tons ficam na constante `TOM`, em `js/ui.js`.
 
+## Publicando uma versão nova
+
+O site no GitHub Pages se atualiza sozinho a cada push no branch publicado. Para o navegador não mostrar a versão antiga guardada em cache, os arquivos em `index.html` têm um número de versão (`?v=3`). A cada publicação, aumente esse número em todos eles: troque `?v=3` por `?v=4` com "localizar e substituir".
+
 ## Estrutura
 
 ```

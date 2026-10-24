@@ -1,0 +1,945 @@
+A GRANDE JORNADA                                                                         GUIA DO MESTRE
+
+
+
+
+                          A GRANDE JORNADA — RPG BÍBLICO
+
+
+
+
+                                 Guia do
+                                 Mestre
+           Como conduzir o jogo, preparar aventuras e guiar a família pela
+                                      Bíblia.
+
+
+
+
+               5–7 anos            8–10 anos                11–13 anos        14+ anos
+
+
+
+
+                              Manual provisório v2 · nome do jogo a definir
+
+
+
+
+                                                  ◊ 1 ◊
+A GRANDE JORNADA                                                           GUIA DO MESTRE
+
+
+
+
+                                           ◊
+
+
+
+
+           Para a minha esposa, que se alegra com o que crio, se orgulha de
+               minhas criações e me incentiva a continuar esse trabalho.
+
+
+         E para os meus filhos que virão, porque este jogo foi pensado muito
+                       antes que eu pudesse segurar suas mãos.
+
+
+
+
+                                           ◊
+
+
+
+
+                                         ◊ 2 ◊
+A GRANDE JORNADA                                                                               GUIA DO MESTRE
+
+
+
+                                                    ◊ ◊ ◊
+
+
+
+                        Uma Carta a Quem Vai Jogar
+    A todos os cristãos amantes de RPG que querem ensinar os filhos os princípios da Bíblia ao mesmo
+            tempo que fortalecem laços, criam conexões e se divertem em uma aventura épica.
+
+Este jogo nasceu de duas paixões antigas: a Bíblia e o RPG.
+Sempre gostei de RPG. Especialmente de RPG de mesa, em que a aventura acontece na conversa entre
+pessoas que se importam umas com as outras. Ao longo dos anos, comecei vários jogos cristãos. Cheguei
+a esboçar um RPG só do Apocalipse, complexo, parecido com D&D — mas o projeto cresceu rápido
+demais para um homem só com TDAH conseguir terminar. Como muitas coisas que a gente ama, ficou no
+caminho.
+Um dia, rolando o Instagram, vi um pai jogando RPG com os filhos, ensinando a Bíblia de um jeito tão
+lúdico que me chamou atenção. Aquilo reacendeu o que tinha em mim. Mas, dessa vez, com uma
+diferença: eu não queria mais fazer algo complexo. Queria algo simples — para crianças. Algo que juntasse
+o que eu mais gosto, o RPG de mesa, com o que sou de verdade, um cristão.
+Eu ainda não sou pai. Mas penso em ter filhos daqui a pouco. E, como todo pai gamer que sonha em ser,
+eu quero que meus filhos amem jogos como eu amo. A pergunta que me fiz foi simples: qual é a melhor
+forma de juntar algo que eu gosto com crianças pequenas, sem precisar dar telas a elas tão cedo? A
+resposta ficou clara: criar algo clássico, antes das telas. Algo que estimulasse o cérebro, a imaginação e o
+coração da criança desde cedo — e que ainda servisse para o resto da vida.
+Deus já salvou a minha vida algumas vezes — em sentidos que não cabem aqui. Esse jogo é, em parte, a
+minha forma de devolver alguma coisa. De pegar o que Ele fez por mim e transformar numa ferramenta
+que possa fazer algo, mesmo que pequeno, por outras famílias.
+A Grande Jornada é a tentativa de fazer isso. Um jogo de mesa para a família inteira percorrer a Bíblia, do
+princípio ao fim, uma história de cada vez. Sem telas. Sem complicação. Com o suficiente de regra para
+ser RPG de verdade — e o suficiente de coração para ser cultura de família.
+Imagino o pai sendo o Mestre, ao lado da esposa, com os filhos sentados em volta da mesa num domingo.
+Imagino também jovens líderes de igreja usando o jogo com seus grupos de adolescentes. O jogo foi feito
+para os dois cenários — porque, no fundo, ambos são a mesma coisa: pessoas que se amam, aprendendo
+juntas o que Deus tem a dizer, brincando.
+O que eu desejo de coração é que, daqui a dez anos, uma criança que cresceu jogando isso me encontre e
+me diga algo assim: "Obrigado. Esse jogo aproximou a minha família. Eu aprendi valores cedo que vou levar
+pro resto da vida. E eu me interessei por Deus de um jeito que talvez nunca tivesse acontecido só do jeito
+clássico." É para isso que o jogo existe.
+Que a sua família tenha uma boa jornada.
+
+
+                                                                                            — danny.dapaz
+
+
+
+
+                                                    ◊ ◊ ◊
+
+
+                                                    ◊ 3 ◊
+A GRANDE JORNADA                                                                             GUIA DO MESTRE
+
+
+
+
+    SEÇÃO I
+
+    O Seu Papel
+Você é o Mestre de A Grande Jornada — geralmente um pai, uma mãe ou o irmão mais velho. Você
+conta a história, dá voz aos personagens e decide o que acontece quando os Viajantes agem. Sem
+você, o jogo não começa.
+
+Não é preciso ter jogado RPG antes. Este guia ensina tudo, passo a passo. Se você já jogou — D&D
+ou outro sistema — vai reconhecer muita coisa, com uma diferença importante de espírito.
+
+
+
+    A REGRA DE OURO DO MESTRE
+    O Mestre não joga contra os Viajantes. O Mestre quer que eles vençam, aprendam e se divirtam.
+    Quando estiver em dúvida sobre uma regra, escolha o que mantém a história fluindo — e seja sempre
+    justo.
+
+
+
+
+AS TRÊS TAREFAS DO MESTRE
+
+Contar
+Descrever o mundo, dar vida aos personagens da história e manter a aventura andando com
+propósito. Você é os olhos e os ouvidos dos Viajantes.
+
+Decidir
+Quando o resultado de uma ação é incerto, você pede uma Prova e interpreta o dado com bom
+senso. Você é o árbitro — mas um árbitro que torce pelo grupo.
+
+Cuidar
+Perceber quando alguém está cansado, garantir que todos participem e conduzir a conversa de
+reflexão no fim. Você é também um pastor da mesa.
+
+
+
+
+    SEÇÃO II
+
+    Como o Jogo Funciona
+A Grande Jornada percorre a Bíblia uma história de cada vez, na ordem — começando pela Criação.
+Cada história vira uma aventura. Ao longo do tempo, a família atravessa as Escrituras como uma
+grande viagem.
+
+As histórias são vividas em fantasia lúdica. O cenário ganha cores de conto, a imaginação é
+convidada a brincar. A espinha continua sendo a Bíblia — o jeito de viver é mágico e divertido.
+
+O VIAJANTE — O PERSONAGEM DO JOGADOR
+
+
+
+
+                                                   ◊ 4 ◊
+A GRANDE JORNADA                                                                                             GUIA DO MESTRE
+
+Cada jogador cria o seu próprio Viajante: um personagem com nome próprio, que não é uma figura
+bíblica. O Viajante caminha pelas histórias e ajuda. Na Criação, é um ajudante no jardim; na
+história de Noé, um ajudante na arca.
+
+O mesmo Viajante segue de uma aventura para outra, crescendo. Depois de muitas aventuras, o
+Viajante de uma criança terá uma história de verdade.
+
+O SISTEMA QUE CRESCE
+
+Existe um jogo com quatro camadas de profundidade. A base é sempre a mesma; o que muda é o
+quanto ela fica complexa, conforme a idade.
+
+
+
+    A PROVA — A REGRA CENTRAL
+    Quando um Viajante tenta algo incerto, você pede uma Prova.
+    O jogador rola o dado da idade dele e soma as Virtudes.
+    Se o total alcançar o Número da Prova que você definiu, ele consegue.
+
+
+
+
+    SEÇÃO III
+
+    Como Deus Aparece nas Histórias — "A Voz"
+Em todas as aventuras, Deus aparece e fala — Ele dá uma missão a Noé, avisa Caim, conversa com
+Adão e Eva. Como o Mestre se refere a Ele depende da idade da mesa, e isso é proposital.
+
+A CONVENÇÃO
+
+
+
+ IDADE DOS VIAJANTES       COMO O MESTRE SE REFERE   POR QUÊ
+
+ 5–7 e 8–10 anos           A Voz                     Mais lúdico, próximo, menos intimidante. "A Voz pediu..."; "A Voz
+                                                     convidou...".
+
+ 11–13 anos em diante      Deus                      Já entendem e merecem o nome direto. "Deus pediu..."; "Deus avisou...".
+
+ Mesa mista                A Voz                     Use o termo da criança mais nova da mesa, sempre.
+
+
+
+
+    POR QUE ESSA DIFERENÇA IMPORTA
+    Para uma criança de 6 anos, "A Voz" é uma figura presente, gentil e clara — como um personagem da
+    história. Para um adolescente de 14, "Deus" é a palavra que ele já usa na vida real, e usar outro termo
+    soaria infantil. A convenção respeita cada idade.
+
+
+
+Em textos descritivos das aventuras (instruções para o Mestre, fora das cenas), as aventuras usam
+"Deus" diretamente, porque são instruções, não ficção. "A Voz" aparece apenas dentro das cenas
+narradas.
+
+
+
+
+                                                          ◊ 5 ◊
+A GRANDE JORNADA                                                                          GUIA DO MESTRE
+
+
+
+
+    SEÇÃO IV
+
+    As Quatro Idades e Como Conduzi-las
+Cada faixa etária pede um tom diferente do Mestre. Conheça cada uma antes de sentar à mesa.
+
+
+
+    O Pequeno Ajudante                                                                    5 – 7 ANOS
+
+
+
+Como conduzir
+Seja teatral e entusiasta — faça vozes, gestos, sons. A criança pequena aprende pela emoção. A atenção
+dura pouco: planeje aventuras de 20 a 35 minutos.
+Ofereça sempre duas escolhas, no máximo, e mostre-as com objetos ou cartões coloridos. Use o Dado
+da Luz (símbolos, não números). Refira-se a Deus como "A Voz".
+
+Sobre a Virtude favorita
+Nessa idade, a criança escolhe uma Virtude favorita entre as seis. Sem números — é o "jeito" do Viajante
+dela. Quando ela age de um modo que combina com a Virtude, narre dando vantagem natural: "como
+você é Corajoso, a luz vem mais brilhante".
+
+O que priorizar e o que evitar
+Priorize simplicidade, repetição e maravilhamento. Evite complexidade, dilemas e qualquer punição
+severa. Nesta idade, ninguém "perde" — a criança ganha por ajudar.
+
+
+
+
+    O Jovem Aprendiz                                                                     8 – 10 ANOS
+
+
+
+Como conduzir
+Seja um guia animado. A criança já entende causa e consequência e gosta de equipe. Aventuras de 40 a
+60 minutos. Use o dado de 6 lados (d6). Continue se referindo a Deus como "A Voz".
+Antes de decisões importantes, conceda 1 minuto de Conselho — o grupo conversa e decide junto. Isso
+ensina a ouvir o próximo.
+
+Sobre as duas Virtudes
+O Jovem Aprendiz escolhe duas Virtudes das seis. Cada uma soma +1 quando combina com a ação.
+Aceite a escolha do jogador, qualquer que seja — todas as seis Virtudes estão disponíveis.
+
+O que priorizar e o que evitar
+Priorize trabalho em equipe e causa-e-efeito: o mundo do jogo reage às escolhas. Evite favoritismo e
+dar respostas rápidas demais — deixe-os pensar.
+
+
+
+
+    O Guardião                                                                           11 – 13 ANOS
+
+
+
+
+                                                 ◊ 6 ◊
+A GRANDE JORNADA                                                                               GUIA DO MESTRE
+
+
+Como conduzir
+Seja um mediador que provoca reflexão. O pré-adolescente questiona e testa limites — isso é saudável.
+Aventuras de 60 a 90 minutos. Use o dado de 8 lados (d8). A partir desta idade, refira-se a Deus pelo
+nome — "Deus", não mais "A Voz".
+Inclua Provas de Tentação: atalhos fáceis mas errados. Resistir dá bônus; ceder traz consequências na
+história.
+
+Sobre as quatro Virtudes
+O Guardião distribui +3, +2, +1, +1 entre quatro Virtudes à sua escolha. As outras duas começam em 0 e
+podem ser desenvolvidas com pontos de nível.
+
+O que priorizar e o que evitar
+Priorize dilemas, consequências e o tema da identidade. Evite soluções fáceis e moralismo superficial.
+
+
+
+
+     O Mensageiro                                                                      14 ANOS OU MAIS
+
+
+
+Como conduzir
+Seja um parceiro e co-criador. O jovem é capaz de raciocínio moral profundo e quer ser levado a sério.
+Aventuras de 90 minutos ou mais. Use o dado de 20 lados (d20). Refira-se a Deus diretamente.
+Apresente dilemas reais, sem resposta certa óbvia. Não entregue a resposta — conduza o raciocínio do
+grupo.
+
+Sobre as seis Virtudes
+O Mensageiro usa todas as seis Virtudes, começando em 0. O jogador distribui +8 pontos no total, sem
+ultrapassar +3 em nenhuma inicialmente. Ao subir de nível, pode chegar a +4. Modificadores podem cair
+a -2 por escolhas que prejudiquem uma Virtude.
+
+O que priorizar e o que evitar
+Priorize profundidade e ambiguidade moral honesta. Evite dogmatismo e minimizar as perguntas
+difíceis. A profundidade está nas perguntas, nunca em cenas pesadas.
+
+
+
+
+    SEÇÃO V
+
+    Definindo o Número da Prova
+Quando você pede uma Prova, você define quão difícil ela é — o Número da Prova. Pense em três
+níveis:
+
+
+ DIFICULDADE       NOME                    NÚMERO (14+)      QUANDO USAR
+
+ Simples           Pão de Cada Dia         8                 Tarefas comuns; quase sempre dá certo
+
+ Média             Prova do Deserto        13                Exige esforço real; pode falhar
+
+ Difícil           Hora Decisiva           18                Grandes feitos; raramente fácil
+
+
+
+
+                                                 ◊ 7 ◊
+A GRANDE JORNADA                                                                                     GUIA DO MESTRE
+
+
+
+
+       AJUSTE POR IDADE
+       Os números acima são para o d20 (14+). Para idades menores, ajuste proporcionalmente: no d8, "tire 5
+       ou mais" é difícil; no d6, "tire 4 ou mais" é difícil. No Dado da Luz, não há número — você lê o símbolo
+       e narra (veja Seção V).
+
+
+
+Lembre-se: se algo seria fácil demais, não peça Prova — apenas diga que deu certo. Se algo seria
+impossível, diga que não dá. As Provas são para momentos genuinamente incertos.
+
+
+
+
+       SEÇÃO VI
+
+       O Dado da Luz (5–7 anos)
+Os Pequenos Ajudantes não usam dado numerado. Eles usam o Dado da Luz — um dado com três
+símbolos. Você, o Mestre, interpreta o resultado narrativamente.
+
+
+ SÍMBOLO              SIGNIFICADO                   COMO O MESTRE CONDUZ
+
+ Sol                  Deu certo!                    Narre uma consequência alegre. A criança brilha — é o momento
+                                                    dela.
+
+ Broto                Deu certo aos poucos          Narre que conseguiu, mas com algo a aprender. Ofereça uma
+                                                    pequena descoberta na cena.
+
+ Nuvem                Ainda não                     Narre que precisa tentar outro jeito. Nunca como castigo. A
+                                                    criança continua na cena, busca um novo caminho. Não se perde
+                                                    Pontos de Luz no Dado da Luz.
+
+Se a família não tiver um Dado da Luz pronto, improvise com um d6: 1–2 nuvem, 3–4 broto, 5–6
+sol. A grande maioria dos resultados, então, é positiva — exatamente como deve ser para essa
+idade.
+
+
+
+       QUANDO O MESTRE NEM PRECISA DE PROVA
+       Com os Pequenos Ajudantes, peça Prova apenas nos momentos chave da aventura — duas ou três
+       vezes na sessão inteira. Na maior parte do tempo, apenas narre que a coisa boa aconteceu. O dado é
+       especial; usá-lo demais cansa a criança.
+
+
+
+
+       SEÇÃO VII
+
+       Os Pontos de Luz
+Cada Viajante tem Pontos de Luz — sua resistência interior diante das dificuldades da história. Não
+é vida nem energia para lutar. É a capacidade de aguentar momentos difíceis sem se abater.
+
+
+
+
+                                                         ◊ 8 ◊
+A GRANDE JORNADA                                                                               GUIA DO MESTRE
+
+
+
+
+ IDADE                                PONTOS DE LUZ
+
+ Pequeno Ajudante (5–7)               3 pontos
+
+ Jovem Aprendiz (8–10)                4 pontos
+
+ Guardião (11–13)                     5 pontos
+
+ Mensageiro (14+)                     6 pontos
+
+O número cresce com a idade porque os mais velhos enfrentam histórias com mais peso
+emocional.
+
+QUANDO O MESTRE TIRA UM PONTO DE LUZ
+
+• O Viajante cede a uma tentação ou é enganado por um personagem
+• Falha numa Prova importante para o rumo da história (não em qualquer Prova)
+• Recebe palavras duras ou injustas dentro da cena
+• Faz uma escolha que machuca o coração (uma traição pequena, desonestidade, abandono de um
+   amigo)
+Importante: Pontos de Luz não são tirados pelos Pequenos Ajudantes (5–7). Para essa idade, o
+conceito existe apenas como símbolo positivo de progresso — eles ganham, mas não perdem.
+
+COMO O MESTRE CONCEDE RECUPERAÇÃO
+
+• Um Viajante encoraja outro com palavras — +1 Ponto ao Viajante encorajado
+• Um momento de descanso, oração ou contemplação dentro da aventura — +1 ou +2
+• Início de uma nova aventura — recupera todos os pontos
+• O jogador pode gastar 1 Selo de Virtude para recuperar 1 Ponto de Luz
+
+
+    SE UM VIAJANTE ZERAR OS PONTOS DE LUZ
+    Ele fica "cansado por dentro". Não morre, não sai da aventura. Mas você, como Mestre, narra que ele
+    não tem energia para liderar as próximas cenas — outro Viajante precisa cuidar dele. Isso ensina
+    interdependência. Assim que receber cuidado, recupera pelo menos 1 Ponto e volta ao protagonismo.
+
+
+
+
+    SEÇÃO VIII
+
+    As Espigas e o Dízimo
+As Espigas são a "moeda" do jogo — mas fiéis a Gênesis, não são dinheiro cunhado: são grãos,
+mantimentos, o fruto do trabalho. Os Viajantes as colhem ao longo das aventuras e as usam de
+quatro formas. Mais importante: as Espigas são a ferramenta que ensina a criança a devolver o
+dízimo e a ofertar — talvez a lição mais prática de todo o jogo.
+
+
+
+
+                                                    ◊ 9 ◊
+A GRANDE JORNADA                                                                                      GUIA DO MESTRE
+
+
+CONCEDENDO ESPIGAS
+
+Seja generoso e frequente — Espigas são o fluxo do dia a dia, diferente dos Selos (raros e valiosos).
+Conceda por:
+
+• Tarefas de trabalho na história (construir, plantar, pastorear) — 1 a 3 Espigas
+• Resolver problemas com criatividade — 1 a 2 Espigas
+• Ajudar outro Viajante — 1 Espiga
+• Colheitas que você semeia na cena — recompensas, achados, presentes de personagens
+
+OS QUATRO USOS
+
+Os Viajantes gastam Espigas para: re-tentar uma Prova (2 Espigas por nova rolagem), comprar
+itens de história (você define o preço), ajudar outro Viajante (dar Espigas) e ofertar (ver abaixo).
+
+O DÍZIMO — OBRIGATÓRIO, ESCALONADO POR IDADE
+
+A cada 10 Espigas colhidas, 1 vai para o Cesto da Comunidade. Mas a forma de aplicar muda com a
+idade:
+
+
+ IDADE             COMO O DÍZIMO FUNCIONA
+
+ 5–7 anos          Simbólico. A criança não calcula. De vez em quando, ao vê-la colher um punhado, você diz: "e esta
+                   aqui colocamos no Cesto, para ajudar quem precisa", e põe 1 Espiga no Cesto. Ela aprende o gesto,
+                   não a conta.
+
+ 8–10 anos         Começa a contar. A cada 10 Espigas, separa 1. Já entende a proporção e o porquê.
+
+ 11+ anos          Dízimo pleno, e abre espaço para refletir: por que devolvemos? o que significa confiar dando parte
+                   do que temos?
+
+
+A OFERTA — VOLUNTÁRIA
+
+Além do dízimo, o Viajante pode dar mais, do coração. A oferta nunca é exigida — e justamente por
+ser livre, rende Selos de Virtude. Recompense a generosidade espontânea: é a diferença entre
+cumprir um dever e amar dar.
+
+O CESTO DA COMUNIDADE
+
+Tudo o que é dado vai para o Cesto — um recurso coletivo da mesa. Use-o nas histórias para
+ajudar os necessitados: alimentar um faminto, socorrer uma viúva, acolher um estrangeiro. Crie
+cenas em que o Cesto resolve algo que Espigas individuais não resolveriam. Assim a criança vê, na
+prática, que o dízimo vira cuidado pelo próximo.
+
+
+
+
+                                                        ◊ 10 ◊
+A GRANDE JORNADA                                                                                 GUIA DO MESTRE
+
+
+
+
+      SOBRE A "BÊNÇÃO QUE RETORNA" — USE COM CUIDADO
+      Ocasionalmente, e de surpresa, você pode fazer a fidelidade no dízimo ser abençoada — uma ajuda
+      inesperada numa hora difícil. MAS nunca a prometa, nunca a torne previsível, e nunca diga "seja fiel
+      que você ganha". O dízimo não é investimento. A bênção, quando vier, é graça — não troca. Se a
+      criança aprender a dar para receber, o ensino se perde. Na dúvida, deixe o gesto de dar ser sua
+      própria recompensa.
+
+
+
+
+      SEÇÃO IX
+
+      O Sistema de Progressão
+Os Viajantes crescem em três camadas, em velocidades diferentes — desenhadas para durar a
+Bíblia inteira.
+
+CAMADA 1 — SELOS DE VIRTUDE (RECOMPENSA RÁPIDA)
+
+A cada aventura, conceda Selos aos Viajantes que agirem bem. Seja generoso, mas justo:
+
+• Escolha difícil mas correta — 1 Selo
+• Ajudar outro Viajante a resolver um problema — 1 Selo
+• Reconhecer um erro durante a aventura — 1 Selo
+• Lembrar e usar um versículo no momento certo — 2 Selos
+• Tratar alguém difícil com bondade inesperada — 2 Selos
+
+CAMADA 2 — OS NÍVEIS (TETO NO 10)
+
+Para subir de nível, o Viajante precisa de duas coisas ao mesmo tempo: ter jogado o número de
+aventuras exigido e ter juntado os Selos necessários. O tempo abre a porta; o caráter entra por ela.
+
+
+ NV.      TÍTULO                           AVENTURAS     SELOS       RECOMPENSA
+
+ 1        Caminhante                       início        —           —
+
+ 2        Companheiro                      +2            4           +1 numa Virtude
+
+ 3        Servo Fiel                       +3            6           1º Dom
+
+ 4        Guardião da Luz                  +4            8           +1 numa Virtude
+
+ 5        Portador da Palavra              +5            10          2º Dom
+
+ 6        Peregrino Firme                  +6            12          +1 numa Virtude
+
+ 7        Coração Valente                  +7            14          3º Dom
+
+ 8        Luz entre as Nações              +8            16          +1 numa Virtude
+
+ 9        Voz do Caminho                   +9            18          4º Dom
+
+ 10       Mensageiro do Alto               +10           20          Dom Final
+
+
+
+
+                                                      ◊ 11 ◊
+A GRANDE JORNADA                                                                                       GUIA DO MESTRE
+
+
+
+
+      SE FALTAREM SELOS
+      Se o Viajante já jogou as aventuras mas não juntou Selos suficientes, ele fica "pronto para subir". Sobe
+      assim que alcançar os Selos. Ninguém trava de vez — só atrasa. Isso protege a criança da frustração e
+      ainda recompensa o envolvimento.
+
+
+
+
+CAMADA 3 — SELOS DE LIVRO (COLEÇÃO INFINITA)
+
+Cada livro da Bíblia concluído rende a cada Viajante um grande Selo de Livro permanente. Esta
+camada não tem teto. Depois do Nível 10, é ela que mantém a jornada empolgante, de Gênesis ao
+Apocalipse.
+
+
+
+
+      SEÇÃO X
+
+      Os Dons — Como Funcionam na Mesa
+Nos níveis 3, 5, 7, 9 e 10, o Viajante desperta um Dom. Não são poderes mágicos: são manifestações
+amadurecidas de uma Virtude. Cada Dom pode ser usado uma vez por aventura.
+
+
+ VIRTUDE            DOM                       EFEITO MECÂNICO NA MESA
+
+ Fé                 Passo no Vazio            Numa ação aparentemente impossível, garanta um sucesso parcial —
+                                              narre que algo segurou o passo do Viajante.
+
+ Coragem            Voz que Não Treme         Quando o jogador fala em cena, ninguém o interrompe; o que ele disser
+                                              pesa. Bom para revelar verdades.
+
+ Sabedoria          Olhar que Vê Fundo        O jogador pode pedir que você revele um sentimento ou segredo do
+                                              coração de um PDM. Você escolhe o que revelar.
+
+ Bondade            Mão que Cura              Restaura 2 Pontos de Luz em outro Viajante. Sem Prova.
+
+ Fidelidade         Promessa que Segura       Algo que o Viajante prometeu ou recebeu não pode ser perdido na cena.
+                                              Você narra como a fidelidade protege.
+
+ Humildade          Pés no Chão               Anula o efeito de uma tentação ou orgulho na cena — em si ou em outro
+                                              Viajante.
+
+
+COMO O MESTRE CONDUZ A ESCOLHA DO DOM
+
+• Quando um Viajante chega ao Nível 3 (5, 7, 9), converse com o jogador antes de ele escolher.
+      Pergunte: "que tipo de Viajante você tem sido?" A escolha deve refletir a jornada vivida.
+• Cada Dom só pode ser escolhido uma vez por Viajante. Não há repetição.
+• O Mestre pode sugerir o momento do uso. Se o jogador estiver travado, lembre: "Você poderia usar
+      o seu Dom de Sabedoria agora."
+• Dons antigos ficam mais fortes. A cada novo Dom que o Viajante ganha, o seu Dom mais antigo
+      passa a poder ser usado uma vez extra por aventura.
+
+
+
+
+                                                        ◊ 12 ◊
+A GRANDE JORNADA                                                                                    GUIA DO MESTRE
+
+
+
+
+    O DOM FINAL (NÍVEL 10)
+    Ao chegar ao Nível 10, o Viajante ganha um Dom Final — a combinação de dois Dons que ele já tem,
+    agindo juntos numa só ação. Trabalhe com o jogador para criar o efeito e o nome desse Dom
+    personalizado. É o legado do Viajante.
+
+
+
+
+    SEÇÃO XI
+
+    Dando Profundidade aos Mais Velhos
+As regras desta seção existem para que o jogo não fique raso quando a mesa só tem Guardiões e
+Mensageiros. São camadas opcionais — você liga o que quiser. Com crianças pequenas na mesa,
+deixe-as de lado; com adolescentes, são o que torna o jogo digno da inteligência deles.
+
+ANTECEDENTES — A HISTÓRIA ANTES DA JORNADA
+
+Antes da primeira aventura, peça a cada Viajante de 11+ que escolha um Antecedente (a lista está
+no Guia do Jogador). Use o Antecedente como gancho: o "Órfão Acolhido" procura uma família; o
+"Estrangeiro" quer pertencer. Traga isso de volta nas cenas — um bom Antecedente rende dezenas
+de ganchos narrativos ao longo da campanha.
+
+OS QUATRO CANTOS DO CORAÇÃO
+
+Traço, Ideal, Vínculo e Defeito dão drama ao personagem. O mais poderoso é o Defeito — e ele tem
+uma regra de ouro que você nunca deve quebrar:
+
+
+
+    NUNCA FORCE O DEFEITO
+    O Defeito do Viajante pertence ao jogador, não a você. Você pode CRIAR situações que tentam o
+    Defeito ("o orgulho seria tão fácil agora..."), mas a decisão de ceder é sempre do jogador. Ceder custa 1
+    Ponto de Luz e gera uma boa cena; vencer o Defeito rende 2 Selos. Forçar o Defeito transforma drama
+    em punição — e mata a confiança da mesa.
+
+
+
+Bons momentos para evocar o Defeito: quando a Prova falha, quando há pressa, quando a tentação
+da história ecoa a fraqueza pessoal do Viajante. Use com parcimônia — uma ou duas vezes por
+aventura.
+
+INSPIRAÇÃO — RECOMPENSANDO O BOM ROLEPLAY
+
+Quando um Viajante interpreta muito bem o seu Traço, Ideal, Vínculo ou Defeito, conceda
+Inspiração. Ela permite rolar de novo um dado, e o Viajante só pode ter uma guardada por vez. É a
+sua ferramenta para premiar quem "vive" o personagem, em vez de só rolar dados.
+
+• Dê Inspiração generosamente aos mais novos (8–10): "você jogou tão bem que pode tentar de
+   novo!".
+
+
+
+
+                                                      ◊ 13 ◊
+A GRANDE JORNADA                                                                        GUIA DO MESTRE
+
+• Para os mais velhos, seja mais seletivo — a Inspiração premia decisões corajosas de interpretação,
+   não qualquer fala.
+
+ESPECIALIZAÇÕES — DIFERENCIANDO VIAJANTES
+
+A partir do nível 4, os Viajantes de 11+ escolhem Especializações dentro das Virtudes (lista no Guia
+do Jogador). Cada uma dá uma pequena vantagem na sua área. Cabe a você definir o efeito exato
+na mesa — mantenha modesto: uma pista, uma vantagem numa Prova, uma opção a mais. A
+Especialização serve à identidade, não ao poder.
+
+
+
+
+    SEÇÃO XII
+
+    Aprofundando a História
+Estas três ferramentas transformam aventuras episódicas numa jornada contínua e madura. Como
+a anterior, são camadas opcionais para os mais velhos.
+
+A PERGUNTA DE JORNADA — O FIO QUE LIGA TUDO
+
+Cada Viajante de 11+ carrega uma Pergunta de Jornada (escolhida no Guia do Jogador) — "qual é o
+meu chamado?", por exemplo. Sua tarefa é, em cada aventura, criar um pequeno momento que
+toque essa pergunta. Não a responda: aprofunde-a. Ao fim de cada livro bíblico, convide o Viajante
+a registrar na ficha como a sua resposta mudou.
+
+Isso dá ao jogo a continuidade emocional que uma trama de vilão daria num RPG comum — mas
+voltada para o crescimento interior, que é o coração deste jogo.
+
+CAMINHOS ALTERNATIVOS E A MARCA DA ESCOLHA
+
+Para os mais velhos, ofereça mais de um caminho válido em cada momento importante da
+aventura:
+• Confrontar — direto e corajoso; resolve rápido, mas pode criar atrito.
+• Dialogar — paciente e sábio; leva tempo, mas constrói pontes.
+• Servir — humilde, pelo exemplo; não resolve na hora, mas planta algo duradouro.
+E registre as decisões grandes: anote na ficha do Viajante (campo "Decisões Importantes da
+Jornada") as escolhas marcantes. Traga-as de volta em aventuras futuras — um personagem
+lembra como foi tratado, uma escolha antiga reaparece. É a Marca da Escolha: as decisões têm
+peso porque têm memória.
+
+O DILEMA — O SALTO PARA OS MENSAGEIROS (14+)
+
+Para os Mensageiros, cada aventura deve incluir um Dilema: uma pergunta moral ou teológica
+genuinamente difícil, ligada à história, sem resposta pronta. O Dilema não é uma pegadinha com
+gabarito — é um convite ao pensamento honesto.
+
+
+
+
+                                                ◊ 14 ◊
+A GRANDE JORNADA                                                                                  GUIA DO MESTRE
+
+
+
+
+     COMO CONDUZIR UM DILEMA
+     Apresente a pergunta, ouça, faça contrapontos, e NÃO entregue a resposta no fim. Um adolescente
+     percebe na hora quando um "debate" é encenação para chegar a uma conclusão pré-fabricada — e se
+     desliga. O respeito pela pergunta é o que o mantém. Está tudo bem encerrar uma sessão com o Dilema
+     ainda em aberto.
+
+
+
+Exemplos de Dilemas para as primeiras histórias: na Criação, "se Deus fez tudo muito bom, de
+onde veio o mal?"; no Jardim, "por que pôr a árvore ao alcance sabendo que cairiam?"; em Caim e
+Abel, "foi justo Deus aceitar uma oferta e não a outra?"; na Arca, "como entender um Deus bom que
+envia um dilúvio?"; em Babel, "foi castigo ou proteção espalhar os povos?". Cada aventura futura
+trará o seu próprio Dilema.
+
+
+
+
+     SEÇÃO XIII
+
+     Preparando uma Aventura
+      Leia a história na Bíblia. Vá sempre à fonte primeiro. Identifique o valor central que a história
+ 1
+      ensina.
+      Escolha a Idade do grupo — ou prepare uma mesa mista (Seção XV). Defina qual dado e quais
+ 2
+      regras vai usar.
+      Separe um versículo-âncora. Uma frase curta que resume a aventura, para a reflexão final.
+ 3
+      Tenha um plano B. Os Viajantes vão surpreender você e sair do roteiro. Improvise e siga. A fluidez
+ 4
+      vale mais que a perfeição.
+
+
+
+     QUANDO EM DÚVIDA, INVENTE
+     É melhor manter o jogo andando do que ficar travado numa regra. Se você não sabe o que
+     aconteceria, escolha o resultado mais interessante e justo — e siga em frente. Você está no comando.
+
+
+
+
+     SEÇÃO XIV
+
+     Quando os Viajantes Saem do Roteiro
+Num RPG, os jogadores são livres para tentar qualquer coisa — e vão. Cedo ou tarde, um Viajante
+vai querer impedir Caim, demolir a torre, ou se recusar a entrar na arca. Isso não é um problema a
+evitar: é o coração do que torna o RPG vivo. O desafio é honrar essa liberdade sem perder a
+coerência com a história bíblica e o seu ensino. Esta seção é o seu mapa para isso.
+
+OS DOIS TIPOS DE RUMO
+
+A chave para resolver quase todo impasse é separar duas coisas que parecem iguais:
+
+
+
+
+                                                     ◊ 15 ◊
+A GRANDE JORNADA                                                                               GUIA DO MESTRE
+
+• O rumo dos fatos — o que acontece na história bíblica — é fixo. Caim faz a escolha dele; a torre para;
+   o dilúvio vem. Isso não é a história do Viajante: é a história da Bíblia, que ele está visitando.
+• O rumo do Viajante — o que o personagem do jogador faz, sente e decide — é totalmente livre. Ele
+   pode tentar de tudo, e você deve honrar isso.
+
+
+
+    A POSIÇÃO DO VIAJANTE NA HISTÓRIA
+    Lembre sempre: o Viajante nunca foi o protagonista dos fatos bíblicos — ele é uma testemunha que
+    participa. Ele pode alertar Caim, mas não pode obrigá-lo, porque Caim também tem livre-arbítrio.
+    Na verdade, o Viajante está na mesma posição de Deus naquela cena: pode avisar com amor, mas
+    respeita a escolha do outro. Isso não é uma limitação do jogo — é a própria lição.
+
+
+
+
+CINCO FERRAMENTAS PARA O MOMENTO
+
+1. Deixe a tentativa acontecer — e mostre a consequência natural
+Se o Viajante quer convencer Caim a não errar, deixe-o tentar de verdade. Caim ouve, hesita... e
+ainda assim escolhe a sombra. A liberdade foi honrada (ele tentou), e a história se manteve (Caim
+escolheu por si). A própria Bíblia faz isso: Deus avisou e não impediu.
+
+2. Redirecione pelo personagem, não pela força
+Em vez de dizer "você não pode", use os personagens da história para criar resistência natural. Se
+o Viajante quer derrubar a torre sozinho, a cidade inteira reage. O mundo empurra de volta, sem
+que você precise bancar o "não" como Mestre.
+
+3. Transforme o desvio em material da história
+Se a ideia é inesperada mas não quebra o fato central, incorpore. Quer dar comida aos vizinhos
+antes do dilúvio? Lindo — vira uma cena de compaixão. Não muda que o dilúvio vem, mas
+enriquece a jornada e rende uma boa conversa.
+
+4. Use o "sim, mas" em vez do "não"
+Quase nunca diga não direto. "Você quer convencer o povo de Babel a parar? Pode tentar! Alguns
+até param para ouvir... mas o orgulho já tomou conta, e eles voltam ao trabalho." O jogador agiu, a
+cena respondeu, a história seguiu.
+
+5. Quando precisar segurar o fato central, seja honesto
+Há momentos em que vale falar fora do personagem: "Essa parte aconteceu de um jeito que a
+gente não muda, porque é a história da Bíblia — mas o que o seu Viajante sente e faz diante disso é
+todo seu." Crianças entendem bem. Não é tirar liberdade; é deixar claras as regras do jogo.
+
+O DESVIO COMO OPORTUNIDADE DE ENSINO
+
+Aqui está o mais bonito: muitas vezes, a tentativa de "desviar" é a melhor chance de ensino que vai
+aparecer. Quando uma criança quer salvar Caim, ela está demonstrando exatamente a compaixão
+que a história quer plantar. Não frustre isso para preservar a lição — celebre a compaixão dela e
+mostre, com tristeza suave, que nem sempre conseguimos mudar a escolha do outro. Essa é uma
+lição mais profunda do que a planejada.
+
+
+
+
+                                                    ◊ 16 ◊
+A GRANDE JORNADA                                                                                GUIA DO MESTRE
+
+
+
+
+    A PERGUNTA QUE DEVOLVE A LIBERDADE
+    Quando a história não pode mudar, tenha sempre esta pergunta no bolso: "E o que o seu Viajante faz
+    com isso?" Ela devolve toda a liberdade para onde ela de fato vive — na reação, no sentimento, na
+    escolha pessoal do personagem. O fato é fixo; a alma do Viajante diante do fato é infinita.
+
+
+
+
+    SEÇÃO XV
+
+    Mesas com Idades Misturadas
+Em família, é comum irmãos de idades diferentes jogarem juntos. O sistema foi feito exatamente
+para isso.
+
+• Cada Viajante usa o dado da própria idade. Numa mesma cena, o caçula rola o Dado da Luz e o
+   irmão mais velho rola o d20. Você só ajusta o Número da Prova para cada um.
+• A narração é para o menor. A história e o versículo final devem ser compreensíveis pela criança
+   mais nova da mesa.
+• Os mais velhos viram co-narradores. Dê a eles pequenos papéis — descrever um lugar, fazer a voz
+   de um personagem.
+• Os dilemas profundos vão para conversas paralelas. Enquanto os menores resolvem a parte simples,
+   lance uma pergunta mais difícil só para os mais velhos.
+
+
+
+    DICA DE FAMÍLIA
+    Peça ao Viajante mais velho para "proteger" ou "ensinar" o Viajante mais novo dentro da história. A
+    diferença de idade vira parte da aventura — e crescimento real entre os irmãos.
+
+
+
+
+    SEÇÃO XVI
+
+    A Reflexão Final
+Toda aventura termina com uma conversa de verdade, fora do jogo. É o momento em que a
+história vira aprendizado. Reserve de 5 a 15 minutos, conforme a idade.
+
+Faça perguntas abertas, ouça mais do que fale, e nunca transforme a reflexão num sermão.
+Encerre com o versículo-âncora e, se a família desejar, com uma oração curta. Cada aventura traz
+as suas próprias perguntas de reflexão prontas.
+
+          Instrui o menino no caminho em que deve andar, e, ainda quando envelhecer,
+                                    não se desviará dele.
+                                             — Provérbios 22:6 —
+
+
+
+
+                                                    ◊ 17 ◊
+A GRANDE JORNADA                                                                        GUIA DO MESTRE
+
+
+
+
+                                      Boa Jornada, Mestre
+          Você tem nas mãos a bússola da viagem. Leia uma aventura, reúna a família e abra o
+                    primeiro capítulo. A Bíblia inteira espera para ser percorrida.
+
+
+
+
+                                                ◊ 18 ◊
+

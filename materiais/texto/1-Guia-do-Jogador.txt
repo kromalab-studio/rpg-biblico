@@ -1,0 +1,726 @@
+A GRANDE JORNADA                                                                         GUIA DO JOGADOR
+
+
+
+
+                          A GRANDE JORNADA — RPG BÍBLICO
+
+
+
+
+                                 Guia do
+                                 Jogador
+            Como criar o seu Viajante e caminhar pelas histórias da Bíblia.
+
+
+
+
+               5–7 anos            8–10 anos                11–13 anos        14+ anos
+
+
+
+
+                              Manual provisório v2 · nome do jogo a definir
+
+
+
+
+                                                  ◊ 1 ◊
+A GRANDE JORNADA                                                           GUIA DO JOGADOR
+
+
+
+
+                                           ◊
+
+
+
+
+           Para a minha esposa, que se alegra com o que crio, se orgulha de
+               minhas criações e me incentiva a continuar esse trabalho.
+
+
+         E para os meus filhos que virão, porque este jogo foi pensado muito
+                       antes que eu pudesse segurar suas mãos.
+
+
+
+
+                                           ◊
+
+
+
+
+                                         ◊ 2 ◊
+A GRANDE JORNADA                                                                             GUIA DO JOGADOR
+
+
+
+                                                    ◊ ◊ ◊
+
+
+
+                        Uma Carta a Quem Vai Jogar
+    A todos os cristãos amantes de RPG que querem ensinar os filhos os princípios da Bíblia ao mesmo
+            tempo que fortalecem laços, criam conexões e se divertem em uma aventura épica.
+
+Este jogo nasceu de duas paixões antigas: a Bíblia e o RPG.
+Sempre gostei de RPG. Especialmente de RPG de mesa, em que a aventura acontece na conversa entre
+pessoas que se importam umas com as outras. Ao longo dos anos, comecei vários jogos cristãos. Cheguei
+a esboçar um RPG só do Apocalipse, complexo, parecido com D&D — mas o projeto cresceu rápido
+demais para um homem só com TDAH conseguir terminar. Como muitas coisas que a gente ama, ficou no
+caminho.
+Um dia, rolando o Instagram, vi um pai jogando RPG com os filhos, ensinando a Bíblia de um jeito tão
+lúdico que me chamou atenção. Aquilo reacendeu o que tinha em mim. Mas, dessa vez, com uma
+diferença: eu não queria mais fazer algo complexo. Queria algo simples — para crianças. Algo que juntasse
+o que eu mais gosto, o RPG de mesa, com o que sou de verdade, um cristão.
+Eu ainda não sou pai. Mas penso em ter filhos daqui a pouco. E, como todo pai gamer que sonha em ser,
+eu quero que meus filhos amem jogos como eu amo. A pergunta que me fiz foi simples: qual é a melhor
+forma de juntar algo que eu gosto com crianças pequenas, sem precisar dar telas a elas tão cedo? A
+resposta ficou clara: criar algo clássico, antes das telas. Algo que estimulasse o cérebro, a imaginação e o
+coração da criança desde cedo — e que ainda servisse para o resto da vida.
+Deus já salvou a minha vida algumas vezes — em sentidos que não cabem aqui. Esse jogo é, em parte, a
+minha forma de devolver alguma coisa. De pegar o que Ele fez por mim e transformar numa ferramenta
+que possa fazer algo, mesmo que pequeno, por outras famílias.
+A Grande Jornada é a tentativa de fazer isso. Um jogo de mesa para a família inteira percorrer a Bíblia, do
+princípio ao fim, uma história de cada vez. Sem telas. Sem complicação. Com o suficiente de regra para
+ser RPG de verdade — e o suficiente de coração para ser cultura de família.
+Imagino o pai sendo o Mestre, ao lado da esposa, com os filhos sentados em volta da mesa num domingo.
+Imagino também jovens líderes de igreja usando o jogo com seus grupos de adolescentes. O jogo foi feito
+para os dois cenários — porque, no fundo, ambos são a mesma coisa: pessoas que se amam, aprendendo
+juntas o que Deus tem a dizer, brincando.
+O que eu desejo de coração é que, daqui a dez anos, uma criança que cresceu jogando isso me encontre e
+me diga algo assim: "Obrigado. Esse jogo aproximou a minha família. Eu aprendi valores cedo que vou levar
+pro resto da vida. E eu me interessei por Deus de um jeito que talvez nunca tivesse acontecido só do jeito
+clássico." É para isso que o jogo existe.
+Que a sua família tenha uma boa jornada.
+
+
+                                                                                            — danny.dapaz
+
+
+
+
+                                                    ◊ ◊ ◊
+
+
+                                                    ◊ 3 ◊
+A GRANDE JORNADA                                                                              GUIA DO JOGADOR
+
+
+
+
+    SEÇÃO I
+
+    Bem-vindo, Viajante
+Você está prestes a entrar em A Grande Jornada — um jogo de imaginação em grupo onde a sua
+família percorre a Bíblia, uma história de cada vez, começando pela Criação.
+
+Neste jogo, uma pessoa é o Mestre — quem conta a história e conduz tudo. As outras pessoas,
+como você, são os Viajantes. Este guia é para você, o Viajante. Ele explica como criar o seu
+personagem e como jogar.
+
+
+
+    O QUE É UM RPG
+    RPG quer dizer "jogo de interpretar um papel". Você não tem um tabuleiro fixo nem um caminho
+    pronto: você imagina, decide e age através do seu personagem. A história acontece na conversa entre
+    você e o Mestre.
+
+
+
+
+    SEÇÃO II
+
+    Quem é o Seu Viajante
+O seu personagem se chama Viajante. Ele não é um personagem da Bíblia — ninguém vira Noé ou
+Davi. Em vez disso, o Viajante é alguém criado por você, com nome próprio, que caminha pelas
+histórias bíblicas e ajuda.
+
+Na primeira aventura, o seu Viajante é um ajudante no jardim da Criação. Mais adiante, será um
+ajudante na arca de Noé. Os personagens da Bíblia continuam sendo eles mesmos — e o seu
+Viajante caminha ao lado deles.
+
+
+
+    O MELHOR DE TUDO
+    O mesmo Viajante continua de uma aventura para a outra. Ele cresce, aprende e fica mais forte ao
+    longo de toda a jornada pela Bíblia. A sua ficha acompanha essa história inteira.
+
+
+
+
+    SEÇÃO III
+
+    As Seis Virtudes
+As Virtudes são as qualidades de caráter do seu Viajante — é o que ele tem de melhor por dentro.
+Elas substituem a "força" e a "destreza" de outros jogos. Há seis, e todas vêm da Bíblia.
+
+
+
+
+                                                    ◊ 4 ◊
+A GRANDE JORNADA                                                                               GUIA DO JOGADOR
+
+
+
+
+ VIRTUDE               O QUE É                                       QUEM NA BÍBLIA
+
+ Fé                    Confiar em Deus mesmo sem ver o fim           Abraão, Rute
+
+ Coragem               Fazer o certo mesmo com medo                  Davi, Ester
+
+ Sabedoria             Saber o que fazer e quando fazer              Salomão, Daniel
+
+ Bondade               Tratar os outros com amor                     O Bom Samaritano, José
+
+ Fidelidade            Manter a palavra que se deu                   Jônatas, Paulo
+
+ Humildade             Servir sem buscar aparecer                    Moisés, João Batista
+
+Quantas Virtudes você usa depende da sua idade. Veja a Seção V para entender qual é o seu caso.
+
+
+
+
+      SEÇÃO IV
+
+      Criando o Seu Viajante
+Criar um Viajante é simples. Em qualquer idade, você decide:
+
+1. O Nome
+O nome do seu Viajante. Pode ser inventado, pode ter um som bíblico — a escolha é sua.
+
+2. A Aparência
+Como o seu Viajante é. Se preferir, pode desenhá-lo na ficha em vez de descrever.
+
+3. As Virtudes
+Como você usa as Virtudes na ficha depende da sua idade:
+
+• Pequeno Ajudante (5–7): escolha uma Virtude favorita entre as seis. Sem números — é o "jeito" do
+      seu Viajante.
+• Jovem Aprendiz (8–10): escolha duas Virtudes. Cada uma soma +1 nas Provas que combinam com
+      ela.
+• Guardião (11–13): distribua +3, +2, +1, +1 entre quatro Virtudes à sua escolha.
+• Mensageiro (14+): todas as seis Virtudes começam em 0. Distribua +8 pontos no total, sem
+      ultrapassar +3 em nenhuma. Mais tarde, ao subir de nível, você pode chegar a +4.
+
+4. O Antecedente — de onde o seu Viajante vem
+Todo Viajante tem uma história antes da jornada começar. Escolha um Antecedente: ele dá ao seu
+Viajante um pequeno talento e uma razão para caminhar. (Opcional dos 8 aos 10; recomendado dos
+11 em diante.)
+
+
+ ANTECEDENTE                   QUEM VOCÊ É                         O QUE GANHA
+
+ Filho de Pastores             Cresceu cuidando de rebanhos        +1 em Provas de cuidar e proteger
+
+ Órfão Acolhido                Foi criado pela bondade de outros   +1 em Provas de confiar e agradecer
+
+ Aprendiz de Escriba           Aprendeu a ler os textos sagrados   Sabe 1 versículo extra por aventura
+
+
+
+
+                                                       ◊ 5 ◊
+A GRANDE JORNADA                                                                                  GUIA DO JOGADOR
+
+
+
+ ANTECEDENTE                 QUEM VOCÊ É                              O QUE GANHA
+
+ Estrangeiro de Terra        Veio de longe, vê tudo com olhos novos   +1 em Provas de enxergar "de fora"
+ Distante
+
+ Filho da Cidade Grande      Cresceu entre mercados e multidões       +1 em Provas sociais e de negociação
+
+ Coração do Deserto          Cresceu em terras duras                  +1 em Provas de resistência e paciência
+
+5. Os Quatro Cantos do Coração
+Para dar alma ao seu Viajante, escreva quatro coisas sobre ele. (Traço e Ideal a partir dos 8 anos;
+Vínculo a partir dos 11; Defeito a partir dos 11.)
+
+• Traço — como o seu Viajante age. "Eu sempre ajudo os mais fracos", "eu falo antes de pensar".
+• Ideal — no que ele acredita. "A verdade acima de tudo", "ninguém fica para trás".
+• Vínculo — o que ele ama e protege. Uma pessoa, um lugar, uma promessa.
+• Defeito — a sua fraqueza. "Tenho orgulho demais", "fujo quando sinto medo", "guardo rancor".
+
+
+    O DEFEITO É O SEU MOTOR DE CRESCIMENTO
+    O Defeito não é castigo — é desafio. Quando você escolhe ceder ao seu Defeito numa cena (fugir, ceder
+    ao orgulho), pode perder 1 Ponto de Luz, mas vive um momento interessante. Quando você VENCE o
+    seu Defeito, ganha 2 Selos de Virtude. O Mestre nunca te obriga a agir pelo Defeito — a escolha é
+    sempre sua.
+
+
+
+
+6. A Pergunta de Jornada
+Esta é a pergunta que o seu Viajante carrega no coração por toda a aventura — de Gênesis ao fim.
+Ela não tem resposta rápida; ela amadurece com você. Escolha uma (ou crie a sua):
+
+• "Qual é o meu chamado?"
+• "Como eu lido com aquilo que ainda não entendo de Deus?"
+• "Que tipo de pessoa eu quero ser quando crescer?"
+A cada aventura, o seu Viajante vai viver algo que toca essa pergunta. Quando a sua família
+terminar um livro inteiro da Bíblia, anote na ficha como a sua resposta mudou. É o crescimento do
+seu coração, registrado.
+
+
+
+
+    SEÇÃO V
+
+    O Seu Viajante Cresce com Você
+A Grande Jornada não é um jogo só. É um jogo com quatro camadas de profundidade, uma para
+cada idade. O seu Viajante joga na camada da sua idade — e, conforme você cresce, pode subir de
+camada.
+
+
+
+
+                                                       ◊ 6 ◊
+A GRANDE JORNADA                                                                                   GUIA DO JOGADOR
+
+
+
+
+ IDADE                       NOME DO VIAJANTE            DADO                        VIRTUDES
+
+ 5 – 7 anos                  Pequeno Ajudante            Dado da Luz (símbolos)      1 favorita (sem número)
+
+ 8 – 10 anos                 Jovem Aprendiz              Dado de 6 lados (d6)        2 (+1 cada)
+
+ 11 – 13 anos                Guardião                    Dado de 8 lados (d8)        4 (+3, +2, +1, +1)
+
+ 14 anos +                   Mensageiro                  Dado de 20 lados (d20)      6 (-2 a +4)
+
+Não se preocupe em decorar isso. O Mestre vai te ajudar a usar o dado e as virtudes certas para a
+sua idade.
+
+
+
+
+    SEÇÃO VI
+
+    Como Se Joga
+Jogar A Grande Jornada é uma conversa. O Mestre descreve uma situação. Você diz o que o seu
+Viajante faz. O Mestre conta o que acontece.
+Na maior parte do tempo, é só isso: imaginar e decidir. Mas, às vezes, o resultado de uma ação é
+incerto. Nesses momentos, o Mestre pede uma Prova.
+
+
+
+    A PROVA — A REGRA CENTRAL DO JOGO
+    Quando você tenta algo incerto, o Mestre pede uma Prova.
+    Você rola o dado da sua idade e soma as suas Virtudes.
+    Se o total alcançar o número que o Mestre pediu, o seu Viajante consegue.
+
+
+
+O DADO DA LUZ (5–7 ANOS)
+
+Os Pequenos Ajudantes não usam dado de números — usam o Dado da Luz, com três símbolos:
+
+• Sol — "deu certo!" O Mestre conta uma coisa boa que acontece.
+• Broto — "deu certo aos poucos." O Mestre conta que dá certo, mas com algo a aprender no
+   caminho.
+• Nuvem — "ainda não." Nada de ruim acontece — o Mestre só diz que vai precisar tentar outro jeito.
+   Ninguém perde.
+Se a sua família não tiver um Dado da Luz pronto, dá para improvisar: jogue um dado comum de 6
+lados e leia 1–2 como nuvem, 3–4 como broto, 5–6 como sol.
+
+
+
+    E SE EU NÃO CONSEGUIR?
+    Falhar numa Prova não é o fim. Faz parte da história. Pedro falhou, Jonas fugiu, e Deus não desistiu
+    deles. Às vezes uma falha abre um caminho novo que você não esperava.
+
+
+
+
+                                                     ◊ 7 ◊
+A GRANDE JORNADA                                                                            GUIA DO JOGADOR
+
+
+COMO DEUS APARECE NAS HISTÓRIAS
+
+Em todas as aventuras, Deus aparece e fala — Ele conversa com Noé, com Caim, com Adão e Eva.
+Como o Mestre se refere a Ele depende da idade da sua mesa, e isso é proposital.
+
+• Para Viajantes de 5 a 10 anos: o Mestre diz "A Voz" — mais lúdico e próximo.
+• Para Viajantes de 11 anos em diante: o Mestre diz "Deus" diretamente.
+Se a sua mesa tem irmãos de idades diferentes, o Mestre usa o termo da criança mais nova — para
+todos se sentirem em casa.
+
+
+
+
+    SEÇÃO VII
+
+    Os Pontos de Luz
+Todo Viajante tem Pontos de Luz — a sua resistência por dentro. Não é vida, não é energia para
+lutar. É a sua capacidade de aguentar momentos difíceis sem se abater.
+
+QUANTOS PONTOS DE LUZ VOCÊ TEM
+
+• Pequeno Ajudante (5–7): 3 pontos
+• Jovem Aprendiz (8–10): 4 pontos
+• Guardião (11–13): 5 pontos
+• Mensageiro (14+): 6 pontos
+O número aumenta com a idade porque os mais velhos enfrentam histórias com mais peso. Não é
+"força" — é capacidade de processar coisas difíceis sem se desanimar.
+
+QUANDO VOCÊ PERDE UM PONTO DE LUZ
+
+• Você cede a uma tentação ou é enganado por um personagem
+• Você falha numa Prova importante para a história
+• Você ouve palavras duras ou injustas de alguém
+• Você se machuca por uma escolha errada (não é dano físico — é o desgaste do coração)
+
+QUANDO VOCÊ RECUPERA PONTOS DE LUZ
+
+• Outro Viajante te dá uma palavra de encorajamento — +1 Ponto
+• Um momento de descanso ou oração na aventura — +1 ou +2 Pontos
+• Início de uma nova aventura — recupera todos
+• Você pode gastar 1 Selo de Virtude para recuperar 1 Ponto de Luz
+
+
+    SE VOCÊ ZERAR OS PONTOS DE LUZ
+    O seu Viajante fica "cansado por dentro". Não morre, não sai da aventura — só não pode ser o
+    protagonista das próximas cenas. Outro Viajante precisa cuidar de você. Isso ensina que ninguém
+    anda sozinho — fazemos a jornada uns pelos outros.
+
+
+
+
+                                                   ◊ 8 ◊
+A GRANDE JORNADA                                                                       GUIA DO JOGADOR
+
+
+
+
+    SEÇÃO VIII
+
+    As Espigas — a Colheita da Jornada
+Conforme o seu Viajante trabalha e ajuda, ele colhe Espigas. As Espigas são a provisão da jornada
+— não são dinheiro de ouro (no tempo da Bíblia que vamos viver, ainda não havia moedas). São
+grãos, mantimentos, o fruto do trabalho honesto, a bênção que vem do esforço.
+
+Diferente dos Selos (que são raros e marcam o seu crescimento), as Espigas são comuns e do dia a
+dia: você ganha algumas em cada aventura, e pode gastá-las.
+
+COMO VOCÊ COLHE ESPIGAS
+
+• Cumprindo uma tarefa de trabalho na história (construir, plantar, pastorear) — 1 a 3 Espigas
+• Resolvendo um problema com criatividade — 1 a 2 Espigas
+• Ajudando outro Viajante — 1 Espiga
+• Pequenas colheitas que o Mestre semeia na aventura — receber, encontrar, ser recompensado
+
+PARA QUE SERVEM AS ESPIGAS
+
+Você pode gastar as suas Espigas de quatro formas:
+
+• Tentar de novo. Gaste 2 Espigas para rolar outra vez um dado que não gostou do resultado.
+• Comprar algo para a história. Uma corda, uma lamparina, mantimentos, um presente — coisas que
+   abrem novos caminhos numa cena. O Mestre diz o preço.
+• Ajudar quem tem pouco. Dê Espigas a outro Viajante que precisa. Generosidade entre
+   companheiros é sempre bem-vista.
+• Ofertar. Dar Espigas de coração, além do dízimo — veja abaixo.
+
+O DÍZIMO E A OFERTA
+
+Aqui está algo importante que o jogo ensina. De tudo o que você colhe, uma parte se devolve — é o
+dízimo.
+
+• A cada 10 Espigas que você colhe, 1 vai para o Cesto — o Cesto da Comunidade, que todos os
+   Viajantes compartilham.
+• Os Pequenos Ajudantes (5–7) não precisam contar: o Mestre ajuda, colocando uma Espiga no Cesto
+   de vez em quando, para aprender o gesto.
+E há a Oferta: quando você quer, pode dar mais do que o dízimo, do seu coração. Ofertar não é
+obrigado — é uma escolha. E toda oferta voluntária rende Selos de Virtude, porque dar com alegria
+faz o coração crescer.
+
+
+
+
+                                                ◊ 9 ◊
+A GRANDE JORNADA                                                                               GUIA DO JOGADOR
+
+
+
+
+     O CESTO DA COMUNIDADE
+     Tudo o que vai para o Cesto serve para ajudar quem precisa nas histórias — alimentar um faminto,
+     socorrer uma viúva, acolher um estrangeiro. O dízimo não se perde: ele vira cuidado pelo próximo. E,
+     às vezes, de surpresa, a fidelidade de quem devolve é abençoada por Deus de um jeito inesperado —
+     não porque você "comprou" a bênção, mas porque Deus cuida de quem é fiel.
+
+
+
+
+           Trazei todos os dízimos à casa do tesouro... e provai-me nisto, diz o Senhor dos
+                                              Exércitos.
+                                               — Malaquias 3:10 —
+
+
+
+
+     SEÇÃO IX
+
+     Subir de Nível na Jornada
+Aqui está a parte mais empolgante. O seu Viajante sobe de nível ao longo da jornada — fica mais
+capaz, ganha habilidades novas e acumula conquistas. O crescimento acontece em três camadas.
+
+CAMADA 1 — SELOS DE VIRTUDE
+
+A cada aventura, você ganha Selos de Virtude por agir bem. É a recompensa rápida — você sente
+na hora.
+
+• Escolha difícil, mas correta — 1 Selo
+• Ajudar outro Viajante a resolver um problema — 1 Selo
+• Reconhecer um erro durante a aventura — 1 Selo
+• Lembrar e usar um versículo no momento certo — 2 Selos
+• Tratar alguém difícil com bondade inesperada — 2 Selos
+
+CAMADA 2 — OS NÍVEIS (ATÉ O 10)
+
+Os Selos servem para subir de nível. Você precisa de duas coisas ao mesmo tempo: ter jogado as
+aventuras necessárias e ter juntado Selos suficientes.
+
+No começo, subir é rápido — você chega ao Nível 2 logo. Depois, cada nível pede mais aventuras e
+mais Selos. O Nível 10 é o topo.
+
+
+ NV.     TÍTULO DO VIAJANTE                  AVENTURAS         SELOS   RECOMPENSA
+
+ 1       Caminhante                          Início            —       —
+
+ 2       Companheiro                         +2                4       +1 numa Virtude
+
+ 3       Servo Fiel                          +3                6       1º Dom
+
+ 4       Guardião da Luz                     +4                8       +1 numa Virtude
+
+ 5       Portador da Palavra                 +5                10      2º Dom
+
+
+
+
+                                                      ◊ 10 ◊
+A GRANDE JORNADA                                                                                   GUIA DO JOGADOR
+
+
+
+ NV.      TÍTULO DO VIAJANTE                  AVENTURAS         SELOS     RECOMPENSA
+
+ 6        Peregrino Firme                     +6                12        +1 numa Virtude
+
+ 7        Coração Valente                     +7                14        3º Dom
+
+ 8        Luz entre as Nações                 +8                16        +1 numa Virtude
+
+ 9        Voz do Caminho                      +9                18        4º Dom
+
+ 10       Mensageiro do Alto                  +10               20        Dom Final
+
+
+
+
+      SE FALTAREM SELOS
+      Se você já jogou as aventuras mas ainda não juntou Selos suficientes, o seu Viajante fica "pronto para
+      subir". Assim que alcançar os Selos, ele sobe. Ninguém trava de vez — só leva um pouco mais de
+      tempo.
+
+
+
+
+CAMADA 3 — SELOS DE LIVRO
+
+Esta camada nunca acaba. Cada livro da Bíblia que a sua família terminar de jogar dá ao seu
+Viajante um grande Selo de Livro — um emblema permanente na ficha: o Selo de Gênesis, o Selo
+de Êxodo, e assim por diante.
+
+Mesmo depois de chegar ao Nível 10, você continua colecionando Selos de Livro. É a sua estante
+de troféus, crescendo de Gênesis até o Apocalipse.
+
+
+
+
+      SEÇÃO X
+
+      Os Dons do Viajante
+Nos níveis 3, 5, 7, 9 e 10, o seu Viajante desperta um Dom — uma habilidade especial que vem do
+crescimento em uma Virtude. Dons não são poderes mágicos. São o que uma virtude amadurecida
+consegue fazer no mundo.
+
+Existem seis Dons, um para cada Virtude. Cada Dom pode ser usado uma vez por aventura —
+escolhido pelo jogador, no momento certo.
+
+
+ VIRTUDE            DOM                      O QUE FAZ
+
+ Fé                 Passo no Vazio           Você tenta algo que parece impossível. O Mestre garante um resultado
+                                             mínimo de sucesso parcial — Deus segura o seu pé.
+
+ Coragem            Voz que Não Treme        Você fala uma verdade decisiva. Ninguém te interrompe, e o que você
+                                             disser pesa na cena.
+
+ Sabedoria          Olhar que Vê Fundo       Você percebe o que outro personagem realmente sente ou esconde — o
+                                             Mestre revela um segredo do coração dele.
+
+ Bondade            Mão que Cura             Você restaura 2 Pontos de Luz em outro Viajante com um gesto de
+                                             cuidado.
+
+
+
+
+                                                       ◊ 11 ◊
+A GRANDE JORNADA                                                                                   GUIA DO JOGADOR
+
+
+
+ VIRTUDE           DOM                       O QUE FAZ
+
+ Fidelidade        Promessa que Segura       Algo que foi dado ou prometido não se perde — uma palavra, um objeto,
+                                             uma aliança. A cena protege isso.
+
+ Humildade         Pés no Chão               Anula o efeito de uma tentação ou orgulho na cena, em você ou em
+                                             outro Viajante.
+
+
+COMO ESCOLHER E USAR OS DONS
+
+• Você escolhe. Ao chegar ao nível 3 (e 5, 7, 9, 10), olhe para os seus Selos: que tipo de Viajante você
+      tem sido? Escolha o Dom que combina.
+• Não dá para repetir. Cada Dom só pode ser escolhido uma vez por Viajante.
+• Uma vez por aventura. Você decide a hora certa de usar.
+• Dons antigos ficam mais fortes. A cada novo Dom que você ganha, o seu Dom mais antigo passa a
+      poder ser usado uma vez extra por aventura.
+
+
+
+      O DOM FINAL (NÍVEL 10)
+      Ao chegar ao Nível 10, você ganha o Dom Final: a combinação de dois Dons que você já tem, agindo
+      juntos numa só ação. Você e o Mestre decidem a combinação, e o nome do novo Dom é criado por você
+      — é o legado do seu Viajante.
+
+
+
+
+      SEÇÃO XI
+
+      Caminhos Mais Profundos (11 anos ou mais)
+Viajantes mais velhos podem aprofundar o personagem de duas formas: escolhendo uma
+Especialização numa Virtude e usando a Inspiração nas cenas. (Estas regras são para Guardiões e
+Mensageiros — os mais novos podem ignorá-las sem prejuízo.)
+
+ESPECIALIZAÇÕES — AFINANDO QUEM VOCÊ É
+
+A partir do nível 4, ao subir de nível, você pode escolher uma Especialização dentro de uma
+Virtude que já tenha. Ela mostra que tipo de pessoa o seu Viajante se tornou — dois Viajantes de
+Sabedoria podem ser muito diferentes.
+
+
+ VIRTUDE            ESPECIALIZAÇÕES POSSÍVEIS
+
+ Fé                 Intercessor · Visionário · Caminhante da Promessa
+
+ Coragem            Defensor dos Fracos · Voz Pública · Enfrentador do Medo
+
+ Sabedoria          Intérprete de Sonhos · Conselheiro · Conhecedor das Escrituras
+
+ Bondade            Curador de Corações · Hospitaleiro · Pacificador
+
+ Fidelidade         Guardião de Alianças · Amigo Leal · Memória do Povo
+
+
+
+
+                                                        ◊ 12 ◊
+A GRANDE JORNADA                                                                             GUIA DO JOGADOR
+
+
+
+ VIRTUDE           ESPECIALIZAÇÕES POSSÍVEIS
+
+ Humildade         Servo Silencioso · Aprendiz Eterno · Lavador de Pés
+
+Cada Especialização dá uma pequena vantagem na sua área — converse com o Mestre sobre o
+efeito. Por exemplo, o Intérprete de Sonhos pode pedir uma pista quando um sonho aparece na
+história; o Pacificador ganha vantagem ao apartar conflitos.
+
+INSPIRAÇÃO — QUANDO VOCÊ VIVE O SEU PERSONAGEM
+
+Quando você interpreta muito bem o seu Traço, Ideal, Vínculo ou Defeito numa cena, o Mestre te
+dá Inspiração. Guarde-a: a qualquer momento, você pode gastá-la para rolar de novo um dado que
+não gostou do resultado.
+
+• A Inspiração é guarde-e-gaste — diferente do Selo, que é progresso permanente.
+• Você só pode ter uma Inspiração guardada por vez. Use antes de ganhar outra.
+• Vale a pena viver o seu personagem de verdade — é assim que ela aparece.
+
+
+
+    SEÇÃO XII
+
+    Jogando com Irmãos de Outras Idades
+Em casa, é comum jogar com irmãos mais novos ou mais velhos na mesma mesa. Aqui vão algumas
+combinações para isso funcionar bem:
+
+• Cada um usa o seu dado. Você rola o seu, o seu irmão rola o dele. O Mestre cuida para que cada um
+   tenha a sua chance.
+• A história é contada para o menor entender. Isso significa que, às vezes, as cenas vão ser mais
+   simples. Quem é mais velho ajuda fazendo perguntas mais profundas no fim, na conversa de
+   reflexão.
+• Se você for o mais velho — ajude. Ofereça-se para fazer a voz de um personagem da história,
+   descrever um lugar, ou "cuidar" do Viajante mais novo dentro da aventura. Isso conta como
+   bondade real e rende Selos.
+• Se você for o mais novo — observe. Você vai aprender muito vendo os mais velhos jogarem. E não
+   tenha medo de pedir ajuda quando algo for difícil de entender.
+
+
+
+    UMA COMBINAÇÃO ESPECIAL PARA IRMÃOS
+    Peça ao seu irmão mais velho (ou mais novo) para o seu Viajante e o dele serem amigos de jornada
+    desde o começo. Eles caminham juntos, se cuidam, se defendem. Isso transforma a diferença de idade
+    em parceria — dentro e fora do jogo.
+
+
+
+
+                                                       ◊ 13 ◊
+A GRANDE JORNADA                                                                       GUIA DO JOGADOR
+
+
+
+
+    SEÇÃO XIII
+
+    As Boas Maneiras do Viajante
+Um RPG é jogado em grupo, e funciona melhor quando todos cuidam uns dos outros.
+
+• Deixe os outros brilharem. Cada Viajante tem o seu momento. Espere a sua vez e torça pelos
+   colegas.
+• Ouça o Mestre. Ele conduz a história e decide as Provas. Se discordar, converse com calma — sem
+   brigar.
+• Entre na história. Quanto mais você imagina e descreve, mais divertido fica para todos.
+• Cuide dos mais novos. Se houver Viajantes menores na mesa, ajude-os. Isso conta como bondade —
+   e rende Selos.
+
+              Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.
+                                          — Salmo 119:105 —
+
+
+
+
+                                    Boa Jornada, Viajante
+      Pegue a sua ficha, crie o seu Viajante e prepare-se. A Grande Jornada começa no princípio
+                                  de tudo — e segue por toda a Bíblia.
+
+
+
+
+                                                ◊ 14 ◊
+

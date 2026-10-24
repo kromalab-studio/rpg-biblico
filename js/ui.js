@@ -8,24 +8,52 @@ const UI = (() => {
   let modalOpen = false;
 
   // ---------- Narração (Web Speech API) ----------
-  let ptVoice = null;
+  // As vozes dependem do aparelho. Para as falas de Deus, procuramos uma voz masculina em português;
+  // se não houver, usamos a voz padrão com tom mais grave e mais lento.
+  const MASCULINAS = /male|mascul|daniel|antonio|antônio|felipe|francisco|donato|fabio|fábio|humberto|julio|júlio|nicolau|valerio|valério|ricardo|ptd|ptz/i;
+  const FEMININAS = /female|femin|luciana|maria|francisca|thalita|vit[oó]ria|joana|let[ií]cia|raquel|brenda|elza|giovanna|leila|manuela|yara|fernanda|afs|pte/i;
+  const TOM = {
+    narrador: { rate: 0.95, pitch: 1 },
+    deus: { rate: 0.85, pitch: 0.85 },
+    deusGrave: { rate: 0.8, pitch: 0.55 }, // sem voz masculina: a voz padrão, mais grave
+  };
+  let ptVoice = null, maleVoice = null;
   function pickVoice() {
     if (!('speechSynthesis' in window)) return;
     const vs = speechSynthesis.getVoices();
-    ptVoice = vs.find(v => /pt[-_]BR/i.test(v.lang)) || vs.find(v => /^pt/i.test(v.lang)) || null;
+    const pt = vs.filter(v => /pt[-_]BR/i.test(v.lang));
+    const pool = pt.length ? pt : vs.filter(v => /^pt/i.test(v.lang));
+    ptVoice = pool.find(v => FEMININAS.test(v.name + ' ' + v.voiceURI)) || pool[0] || null;
+    maleVoice = pool.find(v => MASCULINAS.test(v.name + ' ' + v.voiceURI) && !FEMININAS.test(v.name)) || null;
   }
   if ('speechSynthesis' in window) {
     pickVoice();
     speechSynthesis.onvoiceschanged = pickVoice;
   }
-  function speak(text) {
-    if (!settings.narrar || !('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
+  function utter(text, who = '') {
     const u = new SpeechSynthesisUtterance(text.replace(/[“”"«»]/g, ''));
     u.lang = 'pt-BR';
-    if (ptVoice) u.voice = ptVoice;
-    u.rate = 0.95;
-    speechSynthesis.speak(u);
+    const deus = who === 'A Voz' || who === 'Deus';
+    const voice = deus && maleVoice ? maleVoice : ptVoice;
+    const tom = !deus ? TOM.narrador : maleVoice ? TOM.deus : TOM.deusGrave;
+    if (voice) u.voice = voice;
+    u.rate = tom.rate;
+    u.pitch = tom.pitch;
+    return u;
+  }
+  function speak(text, who = '') {
+    if (!settings.narrar || !('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utter(text, who));
+  }
+  // Toca um exemplo do narrador e da Voz, mesmo com a narração desligada.
+  function testVoices(nomeVoz = 'A Voz') {
+    if (!('speechSynthesis' in window)) return false;
+    pickVoice();
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utter('No princípio, tudo estava escuro e quietinho.'));
+    speechSynthesis.speak(utter('Olá! Que bom que você veio. Vamos fazer a luz chegar?', nomeVoz));
+    return true;
   }
   function hush() {
     if ('speechSynthesis' in window) speechSynthesis.cancel();
@@ -56,7 +84,7 @@ const UI = (() => {
     $('dialog-name').textContent = l.who;
     $('dialog-text').textContent = '';
     $('dialog-next').classList.add('hidden');
-    speak(l.who ? l.text : l.text);
+    speak(l.text, l.who);
   }
 
   function updateDialog(dt) {
@@ -298,7 +326,8 @@ const UI = (() => {
   }
 
   return {
-    settings, say, advance, updateDialog, choose, ask, card, prova, toast, banner, speak, hush, esc,
+    get vozes() { return { narrador: ptVoice && ptVoice.name, deus: maleVoice ? maleVoice.name : '(voz padrão, mais grave)' }; },
+    testVoices, settings, say, advance, updateDialog, choose, ask, card, prova, toast, banner, speak, hush, esc,
     get busy() { return !!dlg || modalOpen; },
     get dialogOpen() { return !!dlg; },
     get modalOpen() { return modalOpen; },

@@ -46,6 +46,8 @@ A criação também tem nome, aparência, Antecedente, os Quatro Cantos do Cora�
 
 **Acessibilidade:** a narração em voz alta (pt-BR, via Web Speech API) pode ser ligada na tela inicial ou na pausa. Ela ajuda quem ainda não lê.
 
+As falas de Deus ("A Voz") usam uma voz masculina em português, se o aparelho tiver uma. Se não tiver, usam a voz padrão com tom mais grave e mais lento. As vozes disponíveis variam de aparelho para aparelho, e o botão **▶ Testar vozes** na tela inicial mostra quais foram escolhidas. Os tons ficam na constante `TOM`, em `js/ui.js`.
+
 ## Estrutura
 
 ```

@@ -105,6 +105,11 @@ const Screens = (() => {
     });
     $('btn-new').onclick = () => creation(handlers);
     $('opt-narrar').onchange = e => { UI.settings.narrar = e.target.checked; Store.save(); };
+    $('btn-voz-teste').onclick = () => {
+      if (!UI.testVoices()) { $('voz-info').textContent = 'Este navegador não tem leitura em voz alta.'; return; }
+      const vz = UI.vozes;
+      $('voz-info').textContent = `Narrador: ${vz.narrador || 'voz padrão'} · A Voz: ${vz.deus}`;
+    };
     show('title');
   }
 

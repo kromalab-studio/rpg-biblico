@@ -50,7 +50,7 @@ As falas de Deus ("A Voz") usam uma voz masculina em português, se o aparelho t
 
 ## Publicando uma versão nova
 
-O site no GitHub Pages se atualiza sozinho a cada push no branch publicado. Para o navegador não mostrar a versão antiga guardada em cache, os arquivos em `index.html` têm um número de versão (`?v=4`). A cada publicação, aumente esse número em todos eles: troque `?v=4` por `?v=5` com "localizar e substituir".
+O site no GitHub Pages se atualiza sozinho a cada push no branch publicado. Para o navegador não mostrar a versão antiga guardada em cache, os arquivos em `index.html` têm um número de versão (`?v=6`). A cada publicação, aumente esse número em todos eles: troque `?v=6` por `?v=7` com "localizar e substituir".
 
 ## Estrutura
 
@@ -59,6 +59,7 @@ index.html            telas, palco do jogo e modais
 css/style.css         visual
 dados/                ← CONTEÚDO EDITÁVEL (não precisa mexer no código)
   regras.js           Virtudes, idades, Antecedentes, níveis, Números da Prova, textos do dízimo
+  animais.js          animais desenhados pixel a pixel (32 × 32) com as cores de cada um
   viajante.js         aparência do Viajante: moldes pixel a pixel (curto e longo) e paletas de cores
   aventura1.js        Aventura 1 — No Princípio: falas, escolhas, Provas, dias, animais, encerramento
 js/                   código

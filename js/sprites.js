@@ -241,21 +241,16 @@ const Art = (() => {
     };
   }
 
-  // De costas: o rosto vira cabelo. Andando: uma perna sobe 1 pixel.
+  // Escolhe a vista (frente, lado ou costas) e aplica o passo: uma perna sobe 1 pixel.
   function moldePara(estilo, dir, frame) {
-    const base = window.DADOS_VIAJANTE.moldes[estilo] || window.DADOS_VIAJANTE.moldes.curto;
-    let g = base.map(r => r.split(''));
-    if (dir === 'up') {
-      for (let y = 10; y <= 18; y++) {
-        for (let x = 0; x < g[y].length; x++) {
-          const c = g[y][x];
-          if ('jdmew'.includes(c)) g[y][x] = y >= 16 ? 'g' : 'f';
-          else if (c === 'o') g[y][x] = 'h';
-        }
-      }
-    }
+    const M = window.DADOS_VIAJANTE.moldes;
+    const m = M[estilo] || M.curto;
+    const vista = Array.isArray(m) ? m : (dir === 'up' ? m.costas : dir === 'left' || dir === 'right' ? m.lado : m.frente) || m.frente;
+    let g = vista.map(r => r.split(''));
+    if (dir === 'left') g = g.map(r => r.slice().reverse());
     if (frame) {
-      const lado = frame === 1 ? x => x <= 17 : x => x >= 18;
+      const meio = Math.floor(g[0].length / 2) + 1;
+      const lado = frame === 1 ? x => x <= meio : x => x > meio;
       for (let y = 28; y < g.length; y++) {
         for (let x = 0; x < g[y].length; x++) {
           if (!lado(x)) continue;
@@ -268,7 +263,7 @@ const Art = (() => {
 
   function viajante(ap, dir = 'down', frame = 0) {
     const a = normalizar(ap);
-    const key = JSON.stringify([a, dir === 'up' ? 'up' : 'down', frame]);
+    const key = JSON.stringify([a, dir, frame]);
     let c = vjCache.get(key);
     if (c) return c;
     const pal = paleta(a);
@@ -440,12 +435,44 @@ const Art = (() => {
     },
   };
 
+  // Animal desenhado a partir de dados/animais.js (passo: as patas da frente sobem 1 pixel).
+  const anCache = new Map();
+  function animal(kind, step) {
+    const key = kind + step;
+    let c = anCache.get(key);
+    if (c) return c;
+    const d = window.DADOS_ANIMAIS[kind];
+    const g = d.molde.map(r => r.split(''));
+    if (step) {
+      for (let y = 22; y < g.length - 1; y++) {
+        for (let x = 16; x < g[y].length; x++) g[y][x] = g[y + 1][x];
+      }
+    }
+    c = document.createElement('canvas');
+    c.width = g[0].length; c.height = g.length;
+    const ctx = c.getContext('2d');
+    for (let y = 0; y < g.length; y++) {
+      for (let x = 0; x < g[y].length; x++) {
+        const col = d.cores[g[y][x]];
+        if (!col) continue;
+        ctx.fillStyle = col;
+        ctx.fillRect(x, y, 1, 1);
+      }
+    }
+    anCache.set(key, c);
+    return c;
+  }
+
   function entity(g, spr, x, y, dir, step, time, scale = 1) {
     g.save();
     g.translate(Math.round(x), Math.round(y));
     if (scale !== 1) g.scale(scale, scale);
     if (spr.kind === 'person') {
       person(g, spr, dir, step);
+    } else if (window.DADOS_ANIMAIS && window.DADOS_ANIMAIS[spr.kind]) {
+      if (dir === 'left') { g.translate(T, 0); g.scale(-1, 1); }
+      blob(g, 16, 29, 10, 2, 'rgba(0,0,0,0.22)');
+      g.drawImage(animal(spr.kind, step), 0, step ? -1 : 0);
     } else if (animals[spr.kind]) {
       if (dir === 'left') { g.translate(T, 0); g.scale(-1, 1); }
       animals[spr.kind](g, step);
